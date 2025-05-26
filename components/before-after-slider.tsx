@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 
@@ -56,18 +55,18 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, className =
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
     >
-      {/* Before Image (Full width) */}
-      <div className="absolute inset-0">
-        <Image src={beforeImage || "/placeholder.svg"} alt="Before" fill className="object-cover" />
+      {/* Before Image (Full width, but clipped from the right) */}
+      <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}>
+        <Image src={beforeImage || "/placeholder.svg"} alt="Before" fill className="object-cover w-full h-full" />
         <div className="absolute bottom-4 left-4 bg-white/80 dark:bg-black/80 px-3 py-1 rounded-full text-sm font-medium">
           Original
         </div>
       </div>
 
-      {/* After Image (Clipped) */}
-      <div className="absolute inset-0 overflow-hidden" style={{ width: `${sliderPosition}%` }}>
-        <Image src={afterImage || "/placeholder.svg"} alt="After" fill className="object-cover" />
-        <div className="absolute bottom-4 left-4 bg-white/80 dark:bg-black/80 px-3 py-1 rounded-full text-sm font-medium">
+      {/* After Image (Full width, but clipped from the left) */}
+      <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}>
+        <Image src={afterImage || "/placeholder.svg"} alt="After" fill className="object-cover w-full h-full" />
+        <div className="absolute bottom-4 right-4 bg-white/80 dark:bg-black/80 px-3 py-1 rounded-full text-sm font-medium">
           Cartoon
         </div>
       </div>

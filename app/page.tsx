@@ -179,7 +179,7 @@ export default function LandingPage() {
                 <TabsTrigger value="disney">Disney</TabsTrigger>
                 <TabsTrigger value="pixar">Pixar</TabsTrigger>
                 <TabsTrigger value="anime">Anime</TabsTrigger>
-                <TabsTrigger value="comic">Comic Book</TabsTrigger>
+                <TabsTrigger value="comics">Comics</TabsTrigger>
               </TabsList>
 
               <TabsContent value="ghibli" className="mt-4">
@@ -201,8 +201,8 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <BeforeAfterSlider
-                    beforeImage="/smiling-woman-headshot.png"
-                    afterImage="/smiling-woman-ghibli-watercolor.png"
+                    beforeImage="/main.png"
+                    afterImage="/ghibli.png"
                     className="rounded-xl overflow-hidden shadow-xl"
                   />
                 </div>
@@ -226,8 +226,8 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <BeforeAfterSlider
-                    beforeImage="/placeholder-k0r4h.png"
-                    afterImage="/smiling-man-disney-portrait.png"
+                    beforeImage="/main.png"
+                    afterImage="/disney.png"
                     className="rounded-xl overflow-hidden shadow-xl"
                   />
                 </div>
@@ -251,8 +251,8 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <BeforeAfterSlider
-                    beforeImage="/placeholder.svg?height=600&width=600&query=professional headshot of a young woman with glasses"
-                    afterImage="/placeholder.svg?height=600&width=600&query=pixar style 3D animated portrait of a young woman with glasses, stylized proportions"
+                    beforeImage="/main.png"
+                    afterImage="/pixar.png"
                     className="rounded-xl overflow-hidden shadow-xl"
                   />
                 </div>
@@ -276,14 +276,14 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <BeforeAfterSlider
-                    beforeImage="/placeholder.svg?height=600&width=600&query=professional headshot of a young man with dark hair"
-                    afterImage="/placeholder.svg?height=600&width=600&query=anime style portrait of a young man with dark hair, large expressive eyes, colorful"
+                    beforeImage="/main.png"
+                    afterImage="/anime.png"
                     className="rounded-xl overflow-hidden shadow-xl"
                   />
                 </div>
               </TabsContent>
 
-              <TabsContent value="comic" className="mt-4">
+              <TabsContent value="comics" className="mt-4">
                 <div className="grid gap-8 md:grid-cols-2 items-center">
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold">Comic Book Style</h3>
@@ -301,8 +301,8 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <BeforeAfterSlider
-                    beforeImage="/placeholder.svg?height=600&width=600&query=professional headshot of a person with a serious expression"
-                    afterImage="/placeholder.svg?height=600&width=600&query=comic book style portrait like Invincible, bold lines, vibrant colors, superhero aesthetic"
+                    beforeImage="/main.png"
+                    afterImage="/comics.png"
                     className="rounded-xl overflow-hidden shadow-xl"
                   />
                 </div>
@@ -369,20 +369,20 @@ export default function LandingPage() {
             <div className="grid gap-8 md:grid-cols-3">
               <TestimonialCard
                 name="Sarah J."
-                avatar="/placeholder.svg?height=100&width=100&query=portrait of a smiling woman with blonde hair"
+                avatar="/sarah.png"
                 rating={5}
                 text="I've tried so many photo editing apps, but the Ghibli style in CartoonifAI is on another level! I used it for my Instagram profile and got over 200 likes in an hour. Worth watching a few ads for this quality!"
               />
               <TestimonialCard
                 name="Michael T."
-                avatar="/placeholder.svg?height=100&width=100&query=portrait of a smiling man with dark hair and beard"
+                avatar="/michael.png"
                 rating={5}
                 text="As a huge Invincible fan, I was skeptical, but wow! The comic book filter actually made me look like I could be in the series. My gaming buddies all downloaded it after seeing my Discord profile pic. The ads aren't even that annoying."
                 featured={true}
               />
               <TestimonialCard
                 name="Aisha K."
-                avatar="/placeholder.svg?height=100&width=100&query=portrait of a smiling woman with dark hair"
+                avatar="/aisha.png"
                 rating={5}
                 text="My kids are obsessed with Disney movies, so I transformed our family photo into Disney style for our Christmas cards. Everyone thought we had it professionally done! Totally worth sitting through a few ads for this quality."
               />
@@ -455,13 +455,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="relative mx-auto md:mx-0 w-full max-w-[300px]">
-                  <Image
-                    src="/placeholder.svg?height=600&width=300&query=smartphone mockup showing cartoon transformation app interface"
-                    alt="CartoonifAI App"
-                    width={300}
-                    height={600}
-                    className="rounded-3xl shadow-2xl"
-                  />
+                  <Image src="/favicon.png" alt="CartoonifAI App" width={300} height={600} className="object-contain" />
                   <div className="absolute -top-4 -right-4 bg-white rounded-full p-3 shadow-lg">
                     <Heart className="h-6 w-6 text-pink-500 fill-pink-500" />
                   </div>
