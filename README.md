@@ -1,3 +1,1 @@
 # CartoonifAI
-# CartoonifAI
-# CartoonifAI
