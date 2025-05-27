@@ -63,6 +63,14 @@ const STYLE_CONFIGS = {
       spatial_img: imageUrl,
     }),
   },
+  simpsons: {
+    model: "fofr/sdxl-simpsons:49a0d0c4c7b8e1d6b8e5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5",
+    getInput: (imageUrl: string) => ({
+      width: 1024,
+      height: 1024,
+      spatial_img: imageUrl,
+    }),
+  },
 } as const
 
 // Supported file types
@@ -107,7 +115,7 @@ export async function POST(request: NextRequest) {
 
     if (!type || !STYLE_CONFIGS[type as keyof typeof STYLE_CONFIGS]) {
       return NextResponse.json(
-        { error: "Valid type is required (ghibli, disney, pixar, anime, comics)" },
+        { error: "Valid type is required (ghibli, disney, pixar, anime, comics, simpsons)" },
         { status: 400 },
       )
     }
