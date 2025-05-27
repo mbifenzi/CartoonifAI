@@ -76,7 +76,20 @@ const STYLE_CONFIGS = {
 // Supported file types
 const SUPPORTED_FORMATS = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/heic", "image/heif"]
 
+// Helper function to delete image from Cloudinary
+async function deleteFromCloudinary(publicId: string): Promise<void> {
+  try {
+    await cloudinary.uploader.destroy(publicId)
+    console.log(`Successfully deleted image from Cloudinary: ${publicId}`)
+  } catch (error) {
+    console.error(`Failed to delete image from Cloudinary: ${publicId}`, error)
+    // Don't throw error here as the main process should continue
+  }
+}
+
 export async function POST(request: NextRequest) {
+  let uploadedPublicId: string | null = null
+
   try {
     // Parse the form data
     const formData = await request.formData()
@@ -162,6 +175,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Failed to upload image to Cloudinary" }, { status: 500 })
     }
 
+    // Store the public_id for cleanup
+    uploadedPublicId = uploadResult.public_id
     console.log("Cloudinary upload successful:", uploadResult.secure_url)
 
     // Get the style configuration
@@ -186,7 +201,20 @@ export async function POST(request: NextRequest) {
     }
 
     if (!transformedUrl) {
+      // Clean up uploaded image before returning error
+      if (uploadedPublicId) {
+        await deleteFromCloudinary(uploadedPublicId)
+      }
       return NextResponse.json({ error: "Failed to get transformed image from Replicate" }, { status: 500 })
+    }
+
+    // Schedule image deletion after successful processing
+    // Delete immediately after successful transformation
+    if (uploadedPublicId) {
+      // Use setTimeout to delete after a short delay to ensure the transformation is complete
+      setTimeout(async () => {
+        await deleteFromCloudinary(uploadedPublicId!)
+      }, 5000) // Delete after 5 seconds
     }
 
     // Return the result with additional metadata
@@ -203,10 +231,16 @@ export async function POST(request: NextRequest) {
         replicate_status: replicateResponse?.status || "completed",
         original_format: photo.type,
         file_size: photo.size,
+        data_retention: "Image automatically deleted from our servers after processing",
       },
     })
   } catch (error) {
     console.error("Transform API Error:", error)
+
+    // Clean up uploaded image in case of any error
+    if (uploadedPublicId) {
+      await deleteFromCloudinary(uploadedPublicId)
+    }
 
     // Return more specific error messages
     if (error instanceof Error) {
@@ -239,5 +273,6 @@ export async function GET() {
     supported_styles: Object.keys(STYLE_CONFIGS),
     supported_formats: SUPPORTED_FORMATS,
     max_file_size: "10MB",
+    data_retention: "Images are automatically deleted from our servers after processing",
   })
 }
