@@ -165,67 +165,20 @@ export async function POST(request: NextRequest) {
 
     const replicateResponse = (await replicate.run(modelId, { input })) as any
 
-    console.log("=== FULL REPLICATE RESPONSE ===")
-    console.log(JSON.stringify(replicateResponse, null, 2))
-    console.log("=== END REPLICATE RESPONSE ===")
-
     // Extract the transformed image URL using the correct method
     let transformedUrl = null
 
-    try {
-      // Method 1: Direct array access with .url() method (as per documentation)
-      if (Array.isArray(replicateResponse) && replicateResponse.length > 0) {
-        if (typeof replicateResponse[0]?.url === "function") {
-          transformedUrl = replicateResponse[0].url()
-          console.log("Method 1 - Direct array with .url():", transformedUrl)
-        } else if (typeof replicateResponse[0] === "string") {
-          transformedUrl = replicateResponse[0]
-          console.log("Method 1 - Direct array string:", transformedUrl)
-        }
+    // Direct array access with .url() method (as per documentation)
+    if (Array.isArray(replicateResponse) && replicateResponse.length > 0) {
+      if (typeof replicateResponse[0]?.url === "function") {
+        transformedUrl = replicateResponse[0].url()
+      } else if (typeof replicateResponse[0] === "string") {
+        transformedUrl = replicateResponse[0]
       }
-
-      // Method 2: Check if it has an output property with array
-      if (!transformedUrl && replicateResponse?.output && Array.isArray(replicateResponse.output)) {
-        if (typeof replicateResponse.output[0]?.url === "function") {
-          transformedUrl = replicateResponse.output[0].url()
-          console.log("Method 2 - Output array with .url():", transformedUrl)
-        } else if (typeof replicateResponse.output[0] === "string") {
-          transformedUrl = replicateResponse.output[0]
-          console.log("Method 2 - Output array string:", transformedUrl)
-        }
-      }
-
-      // Method 3: Check if output is a string
-      if (!transformedUrl && replicateResponse?.output && typeof replicateResponse.output === "string") {
-        transformedUrl = replicateResponse.output
-        console.log("Method 3 - Output string:", transformedUrl)
-      }
-    } catch (urlError) {
-      console.error("Error extracting URL:", urlError)
     }
 
-    console.log("Final transformed URL:", transformedUrl)
-
     if (!transformedUrl) {
-      console.error("No transformed URL found in response")
-      return NextResponse.json(
-        {
-          error: "Failed to get transformed image from Replicate",
-          debug: {
-            response_type: typeof replicateResponse,
-            response_keys: Object.keys(replicateResponse || {}),
-            has_output: !!replicateResponse?.output,
-            output_type: typeof replicateResponse?.output,
-            is_array: Array.isArray(replicateResponse),
-            first_item_type: Array.isArray(replicateResponse) ? typeof replicateResponse[0] : "N/A",
-            has_url_method:
-              Array.isArray(replicateResponse) && replicateResponse[0]
-                ? typeof replicateResponse[0].url === "function"
-                : false,
-          },
-        },
-        { status: 500 },
-      )
+      return NextResponse.json({ error: "Failed to get transformed image from Replicate" }, { status: 500 })
     }
 
     // Return the result with additional metadata
