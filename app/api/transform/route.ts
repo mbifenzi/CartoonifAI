@@ -87,8 +87,44 @@ async function deleteFromCloudinary(publicId: string): Promise<void> {
   }
 }
 
+// Helper function to poll Replicate prediction status
+async function pollReplicateResult(prediction: any, maxAttempts = 60): Promise<any> {
+  let attempts = 0
+
+  while (attempts < maxAttempts) {
+    try {
+      const current = await replicate.predictions.get(prediction.id)
+
+      if (current.status === "succeeded") {
+        return current
+      } else if (current.status === "failed") {
+        throw new Error(`Replicate prediction failed: ${current.error}`)
+      } else if (current.status === "canceled") {
+        throw new Error("Replicate prediction was canceled")
+      }
+
+      // Wait 2 seconds before next poll
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      attempts++
+    } catch (error) {
+      console.error(`Polling attempt ${attempts + 1} failed:`, error)
+      attempts++
+
+      if (attempts >= maxAttempts) {
+        throw error
+      }
+
+      // Wait before retrying
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+    }
+  }
+
+  throw new Error("Prediction timed out after maximum attempts")
+}
+
 export async function POST(request: NextRequest) {
   let uploadedPublicId: string | null = null
+  const startTime = Date.now()
 
   try {
     // Parse the form data
@@ -138,6 +174,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Cloudinary configuration is missing" }, { status: 500 })
     }
 
+    console.log(`Starting transformation for type: ${type}`)
+
     // Convert file to buffer
     const bytes = await photo.arrayBuffer()
     const buffer = Buffer.from(bytes)
@@ -186,18 +224,24 @@ export async function POST(request: NextRequest) {
 
     console.log("Starting Replicate transformation with input:", input)
 
-    const replicateResponse = (await replicate.run(modelId, { input })) as any
+    // Create prediction instead of running directly
+    const prediction = await replicate.predictions.create({
+      version: modelId,
+      input: input,
+    })
 
-    // Extract the transformed image URL using the correct method
+    console.log(`Replicate prediction created: ${prediction.id}`)
+
+    // Poll for result with timeout handling
+    const replicateResponse = await pollReplicateResult(prediction)
+
+    // Extract the transformed image URL
     let transformedUrl = null
 
-    // Direct array access with .url() method (as per documentation)
-    if (Array.isArray(replicateResponse) && replicateResponse.length > 0) {
-      if (typeof replicateResponse[0]?.url === "function") {
-        transformedUrl = replicateResponse[0].url()
-      } else if (typeof replicateResponse[0] === "string") {
-        transformedUrl = replicateResponse[0]
-      }
+    if (replicateResponse.output && Array.isArray(replicateResponse.output) && replicateResponse.output.length > 0) {
+      transformedUrl = replicateResponse.output[0]
+    } else if (typeof replicateResponse.output === "string") {
+      transformedUrl = replicateResponse.output
     }
 
     if (!transformedUrl) {
@@ -205,17 +249,28 @@ export async function POST(request: NextRequest) {
       if (uploadedPublicId) {
         await deleteFromCloudinary(uploadedPublicId)
       }
-      return NextResponse.json({ error: "Failed to get transformed image from Replicate" }, { status: 500 })
+      return NextResponse.json(
+        {
+          error: "Failed to get transformed image from Replicate",
+          debug: {
+            prediction_id: prediction.id,
+            status: replicateResponse.status,
+            output: replicateResponse.output,
+          },
+        },
+        { status: 500 },
+      )
     }
 
     // Schedule image deletion after successful processing
-    // Delete immediately after successful transformation
     if (uploadedPublicId) {
       // Use setTimeout to delete after a short delay to ensure the transformation is complete
       setTimeout(async () => {
         await deleteFromCloudinary(uploadedPublicId!)
       }, 5000) // Delete after 5 seconds
     }
+
+    const totalTime = Date.now() - startTime
 
     // Return the result with additional metadata
     return NextResponse.json({
@@ -226,7 +281,7 @@ export async function POST(request: NextRequest) {
         style: type,
         cloudinary_public_id: uploadResult.public_id,
         processing_time: replicateResponse?.metrics?.predict_time || null,
-        total_time: replicateResponse?.metrics?.total_time || null,
+        total_time: totalTime,
         replicate_id: replicateResponse?.id || null,
         replicate_status: replicateResponse?.status || "completed",
         original_format: photo.type,
@@ -252,7 +307,7 @@ export async function POST(request: NextRequest) {
           { status: 400 },
         )
       }
-      if (error.message.includes("Prediction failed")) {
+      if (error.message.includes("Prediction failed") || error.message.includes("prediction failed")) {
         return NextResponse.json(
           {
             error: "AI transformation failed. Please try again with a different image.",
@@ -260,9 +315,23 @@ export async function POST(request: NextRequest) {
           { status: 500 },
         )
       }
+      if (error.message.includes("timed out")) {
+        return NextResponse.json(
+          {
+            error: "Transformation is taking longer than expected. Please try again.",
+          },
+          { status: 408 },
+        )
+      }
     }
 
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      {
+        error: "Internal server error",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    )
   }
 }
 
@@ -274,5 +343,6 @@ export async function GET() {
     supported_formats: SUPPORTED_FORMATS,
     max_file_size: "10MB",
     data_retention: "Images are automatically deleted from our servers after processing",
+    max_duration: "300 seconds",
   })
 }
