@@ -165,7 +165,7 @@ export default function PrivacyPage() {
               </p>
               <p className="text-purple-700 dark:text-purple-300 text-sm mb-2">
                 <strong>AI Models:</strong> We use advanced machine learning models to analyze your photos and create
-                cartoon transformations in styles including Ghibli, Disney, Pixar, Anime, and Comic Book styles.
+                cartoon transformations in a variety of popular illustration and animation styles.
               </p>
               <p className="text-purple-700 dark:text-purple-300 text-sm">
                 <strong>Immediate deletion:</strong> Images are securely uploaded to our servers for processing and
