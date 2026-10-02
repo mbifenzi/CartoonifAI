@@ -1,296 +1,196 @@
-import Link from "next/link"
-import Image from "next/image"
+import type { Metadata } from "next"
+import { H2, H3, LegalPage, List, P, TextLink } from "@/components/legal-page"
+
+export const metadata: Metadata = {
+  title: "Terms of Use | CartoonifAI",
+  description: "The terms that apply when you use the CartoonifAI app, Sparkles and CartoonifAI Plus.",
+}
 
 export default function TermsPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/favicon.png" alt="CartoonifAI Logo" width={32} height={32} className="w-8 h-8" />
-              <span className="text-xl font-bold">
-                <span className="text-purple-800 dark:text-purple-300">Cartoonif</span>
-                <span className="text-orange-500">AI</span>
-              </span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/#features" className="text-sm font-medium hover:text-primary">
-              Features
-            </Link>
-            <Link href="/#styles" className="text-sm font-medium hover:text-primary">
-              Styles
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-primary">
-              About
-            </Link>
-            <Link href="/contact" className="text-sm font-medium hover:text-primary">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <LegalPage title="Terms of Use" updated="October 2, 2026">
+      <P>
+        These Terms of Use (the &quot;Terms&quot;) are an agreement between you and CartoonifAI Inc.
+        (&quot;CartoonifAI&quot;, &quot;we&quot;, &quot;us&quot;) and govern your use of the CartoonifAI mobile app
+        (the &quot;App&quot;). By using the App you agree to these Terms and to our{" "}
+        <TextLink href="/privacy">Privacy Policy</TextLink>. If you do not agree, do not use the App.
+      </P>
 
-      <main className="flex-1 container py-12">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">Terms of Service</h1>
+      <H2>1. Who can use the App</H2>
+      <P>
+        You must be at least 13 years old to use the App. If you are under the age of majority where you live, you may
+        use the App only with the permission of a parent or guardian who agrees to these Terms for you.
+      </P>
 
-          <div className="prose dark:prose-invert max-w-none">
-            <p className="text-sm text-gray-500 mb-6">Last Updated: May 22, 2025</p>
+      <H2>2. Your account</H2>
+      <P>
+        You can use the App as a guest. A guest&apos;s creations and Sparkles are tied to the device, so they can be lost
+        if you delete the App or change devices. You can optionally sign in with Apple or Google to keep them attached to
+        your account across devices. You are responsible for activity on your account and for keeping access to your
+        Apple or Google account secure.
+      </P>
 
-            <p>
-              Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the CartoonifAI
-              mobile application (the "Service") operated by CartoonifAI Inc. ("us", "we", or "our").
-            </p>
+      <H2>3. Your photos and creations</H2>
+      <H3>3.1 What you may upload</H3>
+      <P>Only upload photos that you have the right to use. In particular, you agree that:</P>
+      <List>
+        <li>you took the photo or have permission to use it, and</li>
+        <li>everyone recognizable in the photo has agreed to it being transformed, and a parent or guardian has agreed
+          for anyone under 18.</li>
+      </List>
 
-            <p>
-              Your access to and use of the Service is conditioned on your acceptance of and compliance with these
-              Terms. These Terms apply to all visitors, users, and others who access or use the Service.
-            </p>
+      <H3>3.2 What you may not do</H3>
+      <P>You agree not to use the App to:</P>
+      <List>
+        <li>create sexual, violent, hateful, harassing or otherwise unlawful content, or any sexualized content involving
+          minors;</li>
+        <li>impersonate someone, or present a creation as a real photo in order to deceive, defame or harm anyone;</li>
+        <li>infringe anyone&apos;s copyright, trademark, privacy or publicity rights;</li>
+        <li>interfere with the App, get around its limits or security, or abuse rewards (for example, by automating
+          rewarded videos or creating installations to collect bonuses); or</li>
+        <li>copy, resell or reverse engineer the App, except where the law allows it.</li>
+      </List>
+      <P>
+        You can report a creation from within the App. We may remove content and suspend or end access for anyone who
+        breaks these Terms.
+      </P>
 
-            <p>
-              By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of
-              the terms, then you may not access the Service.
-            </p>
+      <H3>3.3 Ownership and permission to operate the service</H3>
+      <P>
+        You keep the rights you have in the photos you upload. As between you and us, you may use your creations for
+        personal, non-commercial purposes, including sharing them on social media. You give us a limited, worldwide,
+        royalty-free permission to store, process and display your photos and creations only as needed to provide the
+        App to you, for as long as they are stored under our{" "}
+        <TextLink href="/privacy">Privacy Policy</TextLink>. We do not use your photos for advertising or to train AI
+        models.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">1. Use of the Service</h2>
+      <H3>3.4 AI-generated results</H3>
+      <P>
+        Creations are generated automatically by AI models. Results can be inaccurate, unexpected or imperfect, may not
+        look like you, and may resemble other images. We do not guarantee any particular result. Free shares of
+        creations from the App may include a small CartoonifAI watermark.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">1.1 Eligibility</h3>
-            <p>
-              You must be at least 13 years old to use the Service. By using the Service, you represent and warrant that
-              you are at least 13 years of age. If you are under 18 years old, you represent that you have your parent
-              or guardian's permission to use the Service and that they have read and agree to these Terms on your
-              behalf.
-            </p>
+      <H2>4. Sparkles</H2>
+      <P>
+        Sparkles are a virtual item used to create transformations. You can receive Sparkles as a welcome bonus, as a
+        daily gift, by choosing to watch rewarded videos, through CartoonifAI Plus, or by buying Sparkle packs.
+      </P>
+      <List>
+        <li>Sparkles have no cash value, cannot be exchanged for money and cannot be transferred or sold.</li>
+        <li>Sparkles you buy or earn do not expire. Plus Sparkles refresh every 30 days and unused Plus Sparkles do not
+          carry over to the next cycle. Plus Sparkles are used before your other Sparkles.</li>
+        <li>If a transformation fails, the Sparkles spent on it are returned automatically.</li>
+        <li>Sparkles are lost if you delete your data, and a guest&apos;s Sparkles are lost if the App is removed from
+          the device before signing in.</li>
+        <li>We may change how many Sparkles a style costs or how many you receive from rewards. A change never removes
+          Sparkles already in your balance.</li>
+      </List>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">1.2 User Account</h3>
-            <p>
-              When you create an account with us, you must provide information that is accurate, complete, and current
-              at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate
-              termination of your account on our Service.
-            </p>
+      <H2>5. CartoonifAI Plus subscriptions</H2>
+      <P>
+        CartoonifAI Plus is an optional auto-renewing subscription, offered monthly or yearly. It includes a Sparkle
+        allowance every 30 days, members-only styles, bonus Sparkles on packs, and sharing without the watermark. The
+        current price and benefits are shown in the App before you subscribe.
+      </P>
+      <List>
+        <li>Payment is charged to your Apple ID when you confirm the purchase.</li>
+        <li>Your subscription renews automatically at the end of each period at the then-current price unless you
+          cancel at least 24 hours before the period ends. Your account is charged for renewal within 24 hours before
+          the end of the current period.</li>
+        <li>If an offer includes a free trial, the subscription starts automatically when the trial ends unless you
+          cancel at least 24 hours before it ends.</li>
+        <li>You can manage or cancel your subscription at any time in your App Store account settings. Cancelling stops
+          future renewals. You keep Plus until the end of the period you have paid for.</li>
+        <li>Deleting the App or your CartoonifAI data does not cancel your subscription.</li>
+      </List>
 
-            <p>
-              You are responsible for safeguarding the password that you use to access the Service and for any
-              activities or actions under your password, whether your password is with our Service or a third-party
-              service.
-            </p>
+      <H2>6. Purchases and refunds</H2>
+      <P>
+        Purchases are processed by Apple and are subject to Apple&apos;s terms. Refund requests are handled by Apple
+        at <TextLink href="https://reportaproblem.apple.com">reportaproblem.apple.com</TextLink>. If Apple refunds a
+        Sparkle pack, the Sparkles from it are removed from your balance. Except where required by law, purchases are
+        final. Use <strong>Restore Purchases</strong> in the App to restore your subscription on a new device.
+      </P>
 
-            <p>
-              You agree not to disclose your password to any third party. You must notify us immediately upon becoming
-              aware of any breach of security or unauthorized use of your account.
-            </p>
+      <H2>7. Rewarded videos</H2>
+      <P>
+        The App offers optional rewarded videos provided by Google AdMob. Watching one is always your choice. A reward
+        is added once the ad network confirms the video was completed, and rewards may be limited per day.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">1.3 Acceptable Use</h3>
-            <p>You agree not to use the Service:</p>
-            <ul className="list-disc pl-6 my-4">
-              <li>In any way that violates any applicable national or international law or regulation.</li>
-              <li>
-                To transmit, or procure the sending of, any advertising or promotional material, including any "junk
-                mail", "chain letter," "spam," or any other similar solicitation.
-              </li>
-              <li>
-                To impersonate or attempt to impersonate the Company, a Company employee, another user, or any other
-                person or entity.
-              </li>
-              <li>
-                To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Service, or
-                which, as determined by us, may harm the Company or users of the Service or expose them to liability.
-              </li>
-              <li>
-                To upload, transmit, or distribute any content that is illegal, harmful, threatening, abusive,
-                harassing, tortious, defamatory, vulgar, obscene, libelous, invasive of another's privacy, hateful, or
-                racially, ethnically, or otherwise objectionable.
-              </li>
-            </ul>
+      <H2>8. Our rights</H2>
+      <P>
+        The App, its styles, design and software are owned by CartoonifAI and its licensors and are protected by law.
+        Subject to these Terms, we give you a personal, non-exclusive, non-transferable, revocable license to use the
+        App on Apple devices that you own or control, as permitted by the Usage Rules in Apple&apos;s Media Services
+        Terms and Conditions.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">2. Intellectual Property</h2>
+      <H2>9. Ending your use</H2>
+      <P>
+        You can stop using the App at any time, and you can delete your data in the App under Settings. We may suspend or
+        end your access if you break these Terms or if we stop offering the App. If we stop offering the App, we will
+        give reasonable notice where we can.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">2.1 Service Content</h3>
-            <p>
-              The Service and its original content (excluding Content provided by users), features, and functionality
-              are and will remain the exclusive property of CartoonifAI Inc. and its licensors. The Service is protected
-              by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks
-              and trade dress may not be used in connection with any product or service without the prior written
-              consent of CartoonifAI Inc.
-            </p>
+      <H2>10. Disclaimers</H2>
+      <P>
+        The App is provided &quot;as is&quot; and &quot;as available&quot;. To the fullest extent permitted by law, we
+        disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose and
+        non-infringement. We do not promise that the App will be uninterrupted or error-free. Some jurisdictions do not
+        allow these exclusions, so they may not apply to you.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">2.2 User Content</h3>
-            <p>
-              When you upload content through the Service ("User Content"), you grant us a worldwide, non-exclusive,
-              royalty-free license to use, reproduce, modify, adapt, publish, translate, create derivative works from,
-              distribute, and display such content in connection with providing the Service.
-            </p>
+      <H2>11. Limitation of liability</H2>
+      <P>
+        To the fullest extent permitted by law, CartoonifAI will not be liable for any indirect, incidental, special,
+        consequential or punitive damages, or for loss of data, profits or goodwill, arising from your use of the App.
+        Our total liability for any claim relating to the App is limited to the greater of the amount you paid us in the
+        12 months before the claim or US$50. Nothing in these Terms limits liability that cannot be limited by law.
+      </P>
 
-            <p>
-              You represent and warrant that: (i) you own the content or have the right to use it and grant us the
-              rights and license as provided in these Terms, and (ii) the posting of your content on or through the
-              Service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other
-              rights of any person.
-            </p>
+      <H2>12. Apple-specific terms</H2>
+      <P>If you downloaded the App from Apple&apos;s App Store, you also agree that:</P>
+      <List>
+        <li>These Terms are between you and CartoonifAI only, not Apple. CartoonifAI, not Apple, is solely responsible
+          for the App and its content.</li>
+        <li>Apple has no obligation to provide any maintenance or support services for the App.</li>
+        <li>If the App fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the
+          purchase price for the App (if any). To the maximum extent permitted by law, Apple has no other warranty
+          obligation with respect to the App.</li>
+        <li>CartoonifAI, not Apple, is responsible for addressing any claims relating to the App or your use of it,
+          including product liability claims, claims that the App fails to meet legal or regulatory requirements, and
+          consumer protection or privacy claims.</li>
+        <li>CartoonifAI, not Apple, is responsible for investigating, defending, settling and discharging any
+          third-party claim that the App infringes that third party&apos;s intellectual property rights.</li>
+        <li>You represent that you are not located in a country subject to a U.S. Government embargo or designated as a
+          &quot;terrorist supporting&quot; country, and that you are not on any U.S. Government list of prohibited or
+          restricted parties.</li>
+        <li>Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them against
+          you.</li>
+      </List>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">2.3 Cartoon Transformations</h3>
-            <p>
-              The cartoon transformations created through our Service are for personal use only. You may share these
-              transformations on social media for personal purposes, but you may not use them for commercial purposes.
-            </p>
+      <H2>13. Governing law</H2>
+      <P>
+        These Terms are governed by the laws of the United States, without regard to conflict of law rules. If you are a
+        consumer, you keep any protections given to you by the mandatory laws of the country where you live. If any part
+        of these Terms is found unenforceable, the rest stays in effect.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">3. Advertising</h2>
+      <H2>14. Changes to these Terms</H2>
+      <P>
+        We may update these Terms. We will change the date at the top and, for significant changes, tell you in the App
+        before they take effect. If you keep using the App after a change takes effect, the updated Terms apply.
+      </P>
 
-            <p>
-              The Service is provided free of charge in exchange for viewing advertisements. By using the Service, you
-              agree to view advertisements that will be displayed within the app. These advertisements help us maintain
-              and improve the Service.
-            </p>
-
-            <p>
-              We may use third-party advertising companies to serve ads when you use the Service. These companies may
-              use information about your visits to this and other websites in order to provide advertisements about
-              goods and services of interest to you.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">4. Privacy</h2>
-
-            <p>
-              Your privacy is important to us. Please review our{" "}
-              <Link
-                href="/privacy"
-                className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-              >
-                Privacy Policy
-              </Link>
-              , which explains how we collect, use, and disclose information about you in connection with your use of
-              the Service.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">5. Termination</h2>
-
-            <p>
-              We may terminate or suspend your account immediately, without prior notice or liability, for any reason
-              whatsoever, including without limitation if you breach the Terms.
-            </p>
-
-            <p>
-              Upon termination, your right to use the Service will immediately cease. If you wish to terminate your
-              account, you may simply discontinue using the Service or delete your account through the app settings.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">6. Limitation of Liability</h2>
-
-            <p>
-              In no event shall CartoonifAI Inc., nor its directors, employees, partners, agents, suppliers, or
-              affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including
-              without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i)
-              your access to or use of or inability to access or use the Service; (ii) any conduct or content of any
-              third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use
-              or alteration of your transmissions or content, whether based on warranty, contract, tort (including
-              negligence) or any other legal theory, whether or not we have been informed of the possibility of such
-              damage.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">7. Disclaimer</h2>
-
-            <p>
-              Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE"
-              basis. The Service is provided without warranties of any kind, whether express or implied, including, but
-              not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement
-              or course of performance.
-            </p>
-
-            <p>
-              CartoonifAI Inc., its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will
-              function uninterrupted, secure or available at any particular time or location; b) any errors or defects
-              will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of
-              using the Service will meet your requirements.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">8. Governing Law</h2>
-
-            <p>
-              These Terms shall be governed and construed in accordance with the laws of the United States, without
-              regard to its conflict of law provisions.
-            </p>
-
-            <p>
-              Our failure to enforce any right or provision of these Terms will not be considered a waiver of those
-              rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining
-              provisions of these Terms will remain in effect.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">9. Changes to Terms</h2>
-
-            <p>
-              We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision
-              is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What
-              constitutes a material change will be determined at our sole discretion.
-            </p>
-
-            <p>
-              By continuing to access or use our Service after those revisions become effective, you agree to be bound
-              by the revised terms. If you do not agree to the new terms, please stop using the Service.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">10. Contact Us</h2>
-
-            <p>
-              If you have any questions about these Terms, please{" "}
-              <Link
-                href="/contact"
-                className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-              >
-                contact us
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </main>
-
-      <footer className="border-t bg-background">
-        <div className="container py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <Image src="/favicon.png" alt="CartoonifAI Logo" width={20} height={20} className="w-5 h-5" />
-                <span className="text-sm font-bold">
-                  <span className="text-purple-800 dark:text-purple-300">Cartoonif</span>
-                  <span className="text-orange-500">AI</span>
-                </span>
-              </Link>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/about"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/terms"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/privacy"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                Privacy
-              </Link>
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              <p>© {new Date().getFullYear()} CartoonifAI. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <H2>15. Contact us</H2>
+      <P>
+        CartoonifAI Inc. —{" "}
+        <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink> ·{" "}
+        <TextLink href="/contact">cartoonifai.com/contact</TextLink>
+      </P>
+    </LegalPage>
   )
 }

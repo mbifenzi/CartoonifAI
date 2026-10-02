@@ -1,478 +1,211 @@
-import Link from "next/link"
-import Image from "next/image"
+import type { Metadata } from "next"
+import { H2, H3, LegalPage, List, P, TextLink } from "@/components/legal-page"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | CartoonifAI",
+  description: "How the CartoonifAI app collects, uses, keeps and deletes your information.",
+}
 
 export default function PrivacyPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/favicon.png" alt="CartoonifAI Logo" width={32} height={32} className="w-8 h-8" />
-              <span className="text-xl font-bold">
-                <span className="text-purple-800 dark:text-purple-300">Cartoonif</span>
-                <span className="text-orange-500">AI</span>
-              </span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/#features" className="text-sm font-medium hover:text-primary">
-              Features
-            </Link>
-            <Link href="/#styles" className="text-sm font-medium hover:text-primary">
-              Styles
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-primary">
-              About
-            </Link>
-            <Link href="/contact" className="text-sm font-medium hover:text-primary">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <LegalPage title="Privacy Policy" updated="October 2, 2026">
+      <P>
+        This Privacy Policy explains how CartoonifAI Inc. (&quot;CartoonifAI&quot;, &quot;we&quot;, &quot;us&quot;)
+        handles your information when you use the CartoonifAI mobile app (the &quot;App&quot;) and this website. If you
+        have questions, email us at <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink>.
+      </P>
 
-      <main className="flex-1 container py-12">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
+      <H2>The short version</H2>
+      <List>
+        <li>You can use the App without an account. Signing in with Apple or Google is optional.</li>
+        <li>Your photos are used only to create the transformations you ask for. We do not sell them, share them for
+          advertising, or use them to train AI models.</li>
+        <li>Photos you upload are deleted automatically within 1 day if you use the App as a guest, or within 30 days
+          if you are signed in. Your finished creations stay in your gallery until you delete them.</li>
+        <li>You can delete all of your data at any time in the App under Settings.</li>
+      </List>
 
-          <div className="prose dark:prose-invert max-w-none">
-            <p className="text-sm text-gray-500 mb-6">Last updated: January 27, 2025</p>
+      <H2>Information we collect</H2>
 
-            <p>
-              This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your
-              information when You use the Service and tells You about Your privacy rights and how the law protects You.
-            </p>
+      <H3>Information created when you install the App</H3>
+      <P>
+        When you first open the App, we create an anonymous installation ID and a secret token so the App can talk to
+        our servers. We also store your device platform (for example, iOS), App version and language, and when the
+        installation was created and last used.
+      </P>
 
-            <p>
-              We use Your Personal data to provide and improve the Service. By using the Service, You agree to the
-              collection and use of information in accordance with this Privacy Policy.
-            </p>
+      <H3>Account information (optional)</H3>
+      <P>
+        If you choose to sign in with Apple or Google, we receive and store your email address, a unique identifier for
+        your Apple or Google account and, if you share it, your name. If you use Apple&apos;s &quot;Hide My Email&quot;,
+        we receive a private relay address instead of your real email.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">Interpretation and Definitions</h2>
+      <H3>Photos and creations</H3>
+      <P>
+        When you transform a photo, the photo you select is uploaded to our servers. We store the finished image (your
+        &quot;creation&quot;) so you can view, save and share it later. We also store which style you used and whether
+        you marked a creation as a favorite.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">Interpretation</h3>
-            <p>
-              The words of which the initial letter is capitalized have meanings defined under the following conditions.
-              The following definitions shall have the same meaning regardless of whether they appear in singular or in
-              plural.
-            </p>
+      <H3>Sparkles, rewards and purchases</H3>
+      <P>
+        We keep a history of your Sparkle balance: welcome bonuses, daily gifts, rewards for watching videos, Sparkles
+        spent on transformations, refunds and purchases. If you buy a Sparkle pack or subscribe to CartoonifAI Plus, we
+        receive confirmation of the purchase and your subscription status. We never receive your payment card details.
+        Apple handles payment.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">Definitions</h3>
-            <p>For the purposes of this Privacy Policy:</p>
-            <ul className="list-disc pl-6 my-4">
-              <li>
-                <strong>Account</strong> means a unique account created for You to access our Service or parts of our
-                Service.
-              </li>
-              <li>
-                <strong>Application</strong> refers to CartoonifAI, the software program provided by the Company.
-              </li>
-              <li>
-                <strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement)
-                refers to CartoonifAI Inc.
-              </li>
-              <li>
-                <strong>Country</strong> refers to: United States
-              </li>
-              <li>
-                <strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or
-                a digital tablet.
-              </li>
-              <li>
-                <strong>Personal Data</strong> is any information that relates to an identified or identifiable
-                individual.
-              </li>
-              <li>
-                <strong>Service</strong> refers to the Application.
-              </li>
-              <li>
-                <strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of
-                the Company. It refers to third-party companies or individuals employed by the Company to facilitate the
-                Service, to provide the Service on behalf of the Company, to perform services related to the Service or
-                to assist the Company in analyzing how the Service is used.
-              </li>
-              <li>
-                <strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the
-                Service or from the Service infrastructure itself (for example, the duration of a page visit).
-              </li>
-              <li>
-                <strong>You</strong> means the individual accessing or using the Service, or the company, or other legal
-                entity on behalf of which such individual is accessing or using the Service, as applicable.
-              </li>
-            </ul>
+      <H3>Feedback and reports</H3>
+      <P>
+        If you rate a creation or report one, we store your rating, the reason you chose and any text you add.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">Collecting and Using Your Personal Data</h2>
+      <H3>Notifications</H3>
+      <P>
+        If you allow notifications, we store a push notification token for your device and your notification settings,
+        so we can tell you when a creation is ready. Daily gift reminders are scheduled on your device.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">Types of Data Collected</h3>
+      <H3>Technical and diagnostic information</H3>
+      <P>
+        Our servers record technical information needed to run and secure the service, such as IP addresses, request
+        times and errors. When something goes wrong, error details may be sent to our error monitoring provider. We
+        configure it so that photos, image links and credentials are not included.
+      </P>
 
-            <h4 className="text-base font-semibold mt-4 mb-2">Personal Data</h4>
-            <p>
-              While using Our Service, We may ask You to provide Us with certain personally identifiable information
-              that can be used to contact or identify You. Personally identifiable information may include, but is not
-              limited to:
-            </p>
-            <ul className="list-disc pl-6 my-4">
-              <li>Email address</li>
-              <li>First name and last name</li>
-              <li>Usage Data</li>
-            </ul>
+      <H2>Face data</H2>
+      <P>
+        Because the App transforms portraits, the photos you upload usually show your face. We use the photo only to
+        create the image you requested. We do not create facial recognition templates or other biometric identifiers,
+        we do not use your face to identify you, and we do not use your photos to train AI models. Photos are shared
+        only with the service providers listed below that store and process them on our behalf, and they are deleted on
+        the schedule described in &quot;How long we keep your information&quot;.
+      </P>
 
-            <h4 className="text-base font-semibold mt-4 mb-2">Image Data</h4>
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 my-4">
-              <p className="font-semibold text-blue-800 dark:text-blue-200 mb-2">🖼️ AI Image Processing</p>
-              <p className="text-blue-700 dark:text-blue-300 text-sm">
-                <strong>What we collect:</strong> When you use our AI cartoon transformation feature, you upload photos
-                that you want to transform into cartoon styles.
-              </p>
-              <p className="text-blue-700 dark:text-blue-300 text-sm mt-2">
-                <strong>How we process:</strong> Your uploaded images are securely transmitted to our servers for AI
-                processing using advanced machine learning models.
-              </p>
-              <p className="text-blue-700 dark:text-blue-300 text-sm mt-2">
-                <strong>Data retention:</strong>{" "}
-                <span className="font-semibold">
-                  Images are automatically and permanently deleted from our servers within 5-10 seconds after the
-                  transformation process is complete.
-                </span>{" "}
-                We do not store your original photos or transformed images.
-              </p>
-            </div>
+      <H2>How we use your information</H2>
+      <List>
+        <li>To create, store and show your transformations.</li>
+        <li>To keep your Sparkle balance, rewards, purchases and Plus benefits accurate, and to restore them when you
+          sign in on another device.</li>
+        <li>To send the notifications you have turned on.</li>
+        <li>To review reports, respond to support requests and improve the quality of results.</li>
+        <li>To keep the service secure, prevent fraud and abuse (for example, claiming the same reward twice), and fix
+          errors.</li>
+        <li>To comply with legal obligations.</li>
+      </List>
+      <P>
+        If you are in the European Economic Area or the United Kingdom, we rely on these legal bases: performing our
+        contract with you (providing the App and the purchases you make), our legitimate interests (security, fraud
+        prevention and improving the App), your consent (notifications, which you can turn off at any time) and legal
+        obligations.
+      </P>
 
-            <h4 className="text-base font-semibold mt-4 mb-2">Usage Data</h4>
-            <p>Usage Data is collected automatically when using the Service.</p>
-            <p>
-              Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address),
-              browser type, browser version, the pages of our Service that You visit, the time and date of Your visit,
-              the time spent on those pages, unique device identifiers and other diagnostic data.
-            </p>
-            <p>
-              When You access the Service by or through a mobile device, We may collect certain information
-              automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique
-              ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet
-              browser You use, unique device identifiers and other diagnostic data.
-            </p>
+      <H2>Advertising</H2>
+      <P>
+        The App offers optional rewarded videos from Google AdMob: you can choose to watch a short video to earn
+        Sparkles. Ads are only shown when you ask for one. The App does not ask for permission to track you across other
+        companies&apos; apps and websites, so it does not give Google your device&apos;s advertising identifier.
+        Google may still collect information such as your IP address, device type and how you interact with the ad to
+        show it, measure it and prevent fraud. When you finish a video, Google tells our servers so we can add your
+        reward. This confirmation includes your installation ID. See{" "}
+        <TextLink href="https://policies.google.com/technologies/partner-sites">how Google uses information from apps that use its services</TextLink>.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">AI Processing and Server-Side Operations</h2>
+      <H2>Service providers we share information with</H2>
+      <P>We share information only with providers that help us run the App, and only for that purpose:</P>
+      <List>
+        <li><strong>Cloudinary</strong> stores uploaded photos and finished creations.</li>
+        <li><strong>Replicate</strong> runs the AI models that create transformations. It receives your photo and
+          returns the result, and keeps them only briefly under its own data retention policy.</li>
+        <li><strong>Apple</strong> processes payments and subscriptions, provides Sign in with Apple and delivers push
+          notifications.</li>
+        <li><strong>Google</strong> provides Sign in with Google and the optional rewarded videos (AdMob).</li>
+        <li><strong>RevenueCat</strong> manages purchases and subscription status. It receives your purchase
+          information and an anonymous user ID.</li>
+        <li><strong>Expo</strong> relays push notifications to Apple&apos;s notification service.</li>
+        <li><strong>Sentry</strong> receives error reports from our servers.</li>
+        <li>Our hosting and infrastructure providers, which run our servers and databases.</li>
+      </List>
+      <P>
+        We may also disclose information if required by law, to protect the rights and safety of our users or others,
+        or as part of a merger or sale of our business, in which case we will tell you before your information becomes
+        subject to a different privacy policy. We do not sell your personal information or share it for cross-context
+        behavioral advertising.
+      </P>
 
-            <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 my-4">
-              <h4 className="text-base font-semibold text-purple-800 dark:text-purple-200 mb-2">
-                🤖 Artificial Intelligence Processing
-              </h4>
-              <p className="text-purple-700 dark:text-purple-300 text-sm mb-2">
-                <strong>Server-side processing:</strong> All image transformations are performed on our secure servers
-                using cloud-based AI services including Replicate and Cloudinary.
-              </p>
-              <p className="text-purple-700 dark:text-purple-300 text-sm mb-2">
-                <strong>AI Models:</strong> We use advanced machine learning models to analyze your photos and create
-                cartoon transformations in a variety of popular illustration and animation styles.
-              </p>
-              <p className="text-purple-700 dark:text-purple-300 text-sm">
-                <strong>Immediate deletion:</strong> Images are securely uploaded to our servers for processing and
-                immediately deleted after transformation. No copies are retained.
-              </p>
-            </div>
+      <H2>How long we keep your information</H2>
+      <List>
+        <li><strong>Uploaded photos:</strong> deleted automatically 1 day after you upload a photo or last use it for a
+          transformation if you use the App as a guest, or after 30 days if you are signed in.</li>
+        <li><strong>Creations:</strong> kept until you delete them, or until you delete your data.</li>
+        <li><strong>Sparkle history, purchases, favorites, feedback and reports:</strong> kept while you use the App,
+          until you delete your data.</li>
+        <li><strong>Server logs and error reports:</strong> kept for a limited period for security and debugging, then
+          deleted.</li>
+      </List>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">Use of Your Personal Data</h2>
+      <H2 id="delete">Deleting your data</H2>
+      <P>
+        You can delete your data at any time in the App: open <strong>Profile → Settings → Delete my account</strong>{" "}
+        (or <strong>Delete my data</strong> if you are not signed in). This permanently deletes, on every device linked
+        to your account, your uploaded photos, creations, Sparkle history, favorites, feedback, reports, notification
+        settings and push tokens, and then your sign-in account. If you also use another app from us with the same
+        sign-in, we keep only the basic account information that app needs.
+      </P>
+      <P>
+        You can also delete a single creation at any time from your gallery. If you cannot use the App, email{" "}
+        <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink> and we will delete your
+        data for you.
+      </P>
+      <P>
+        Deleting your data does not cancel a CartoonifAI Plus subscription. Cancel it in your App Store settings. Apple
+        and RevenueCat keep records of past purchases under their own policies.
+      </P>
 
-            <p>The Company may use Personal Data for the following purposes:</p>
-            <ul className="list-disc pl-6 my-4">
-              <li>
-                <strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service and
-                process AI transformations.
-              </li>
-              <li>
-                <strong>To manage Your Account</strong>: to manage Your registration as a user of the Service.
-              </li>
-              <li>
-                <strong>To contact You</strong>: To contact You by email, telephone calls, SMS, or other equivalent
-                forms of electronic communication regarding updates or informative communications related to the
-                functionalities, products or contracted services.
-              </li>
-              <li>
-                <strong>To provide AI transformations</strong>: To process your uploaded images using artificial
-                intelligence and machine learning algorithms to create cartoon-style transformations.
-              </li>
-              <li>
-                <strong>To provide You with news and offers</strong>: To provide You with news, special offers and
-                general information about other goods, services and events which we offer unless You have opted not to
-                receive such information.
-              </li>
-              <li>
-                <strong>To manage Your requests</strong>: To attend and manage Your requests to Us.
-              </li>
-              <li>
-                <strong>For other purposes</strong>: We may use Your information for data analysis, identifying usage
-                trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our
-                Service, products, services, marketing and your experience.
-              </li>
-            </ul>
+      <H2>Your rights</H2>
+      <P>
+        Depending on where you live, you may have the right to access, correct, delete or receive a copy of your
+        personal information, to object to or restrict how we use it, and to withdraw consent. California residents
+        have the right to know what we collect and to request deletion, and we will not discriminate against you for
+        exercising these rights. To make a request, email{" "}
+        <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink>. We may need to verify your
+        request, and we respond within 30 days. You also have the right to complain to your local data protection
+        authority.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">Sharing of Your Personal Data</h2>
+      <H2>International transfers</H2>
+      <P>
+        We and our service providers may process your information in countries other than your own, including the
+        United States. Where the law requires it, we rely on appropriate safeguards such as the European
+        Commission&apos;s Standard Contractual Clauses.
+      </P>
 
-            <p>We may share Your personal information in the following situations:</p>
-            <ul className="list-disc pl-6 my-4">
-              <li>
-                <strong>With Service Providers</strong>: We may share Your personal information with Service Providers
-                to monitor and analyze the use of our Service, to process AI transformations (Replicate, Cloudinary),
-                and to contact You.
-              </li>
-              <li>
-                <strong>For business transfers</strong>: We may share or transfer Your personal information in
-                connection with any merger, sale of Company assets, financing, or acquisition of all or a portion of Our
-                business to another company.
-              </li>
-              <li>
-                <strong>With Affiliates</strong>: We may share Your information with Our affiliates, in which case we
-                will require those affiliates to honor this Privacy Policy.
-              </li>
-              <li>
-                <strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with
-                Your consent.
-              </li>
-            </ul>
+      <H2>Security</H2>
+      <P>
+        We protect your information with measures such as encrypted connections, hashed installation tokens, signed
+        uploads and access controls. No method of transmission or storage is completely secure, but we work to protect
+        your information and to limit how long we keep it.
+      </P>
 
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 my-4">
-              <p className="font-semibold text-red-800 dark:text-red-200 mb-2">🚫 What We DON'T Share</p>
-              <p className="text-red-700 dark:text-red-300 text-sm">
-                <strong>We do not share your images or photos with third parties without your explicit consent.</strong>{" "}
-                Your uploaded images are processed solely for the purpose of AI transformation and are immediately
-                deleted after processing.
-              </p>
-            </div>
+      <H2>Children</H2>
+      <P>
+        The App is not directed to children under 13, and we do not knowingly collect personal information from them.
+        If you believe a child under 13 has given us personal information, contact us and we will delete it.
+      </P>
 
-            <h2 className="text-xl font-bold mt-8 mb-4">Retention of Your Personal Data</h2>
+      <H2>Changes to this policy</H2>
+      <P>
+        We will update this page when our practices change and change the date at the top. If a change is significant,
+        we will tell you in the App before it takes effect.
+      </P>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">Image Data Retention</h3>
-            <p>
-              <strong>
-                Images are automatically deleted from our servers within 5-10 seconds after processing is complete.
-              </strong>
-              We do not retain any copies of your original photos or transformed images on our servers.
-            </p>
-
-            <h3 className="text-lg font-semibold mt-6 mb-2">Other Personal Data</h3>
-            <p>
-              The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in
-              this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our
-              legal obligations, resolve disputes, and enforce our legal agreements and policies.
-            </p>
-
-            <p>
-              Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen
-              the security or to improve the functionality of Our Service, or We are legally obligated to retain this
-              data for longer time periods.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Transfer of Your Personal Data</h2>
-
-            <p>
-              Your information, including Personal Data, is processed at the Company's operating offices and in any
-              other places where the parties involved in the processing are located. It means that this information may
-              be transferred to — and maintained on — computers located outside of Your state, province, country or
-              other governmental jurisdiction where the data protection laws may differ than those from Your
-              jurisdiction.
-            </p>
-
-            <p>
-              Your consent to this Privacy Policy followed by Your submission of such information represents Your
-              agreement to that transfer.
-            </p>
-
-            <p>
-              The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in
-              accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an
-              organization or a country unless there are adequate controls in place including the security of Your data
-              and other personal information.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Delete Your Personal Data</h2>
-
-            <p>
-              You have the right to delete or request that We assist in deleting the Personal Data that We have
-              collected about You.
-            </p>
-
-            <p>Our Service may give You the ability to delete certain information about You from within the Service.</p>
-
-            <p>
-              You may update, amend, or delete Your information at any time by signing in to Your Account, if you have
-              one, and visiting the account settings section that allows you to manage Your personal information. You
-              may also contact Us to request access to, correct, or delete any personal information that You have
-              provided to Us.
-            </p>
-
-            <p>
-              <strong>Note regarding images:</strong> Since we automatically delete your images after processing, there
-              are no stored images to access, modify, or delete from our servers.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Disclosure of Your Personal Data</h2>
-
-            <h3 className="text-lg font-semibold mt-6 mb-2">Business Transactions</h3>
-            <p>
-              If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred.
-              We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy
-              Policy.
-            </p>
-
-            <h3 className="text-lg font-semibold mt-6 mb-2">Law Enforcement</h3>
-            <p>
-              Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do
-              so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
-            </p>
-
-            <h3 className="text-lg font-semibold mt-6 mb-2">Other Legal Requirements</h3>
-            <p>
-              The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
-            </p>
-            <ul className="list-disc pl-6 my-4">
-              <li>Comply with a legal obligation</li>
-              <li>Protect and defend the rights or property of the Company</li>
-              <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
-              <li>Protect the personal safety of Users of the Service or the public</li>
-              <li>Protect against legal liability</li>
-            </ul>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Security of Your Personal Data</h2>
-
-            <p>
-              The security of Your Personal Data is important to Us. We implement industry-standard security measures
-              including:
-            </p>
-            <ul className="list-disc pl-6 my-4">
-              <li>Encryption of data in transit and at rest</li>
-              <li>Secure server infrastructure for AI processing</li>
-              <li>Automatic deletion of processed images</li>
-              <li>Access controls and authentication</li>
-              <li>Regular security audits and updates</li>
-            </ul>
-            <p>
-              However, remember that no method of transmission over the Internet, or method of electronic storage is
-              100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot
-              guarantee its absolute security.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Children's Privacy</h2>
-
-            <p>
-              Our Service does not address anyone under the age of 13. We do not knowingly collect personally
-              identifiable information from anyone under the age of 13. If You are a parent or guardian and You are
-              aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We
-              have collected Personal Data from anyone under the age of 13 without verification of parental consent, We
-              take steps to remove that information from Our servers.
-            </p>
-
-            <p>
-              If We need to rely on consent as a legal basis for processing Your information and Your country requires
-              consent from a parent, We may require Your parent's consent before We collect and use that information.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Links to Other Websites</h2>
-
-            <p>
-              Our Service may contain links to other websites that are not operated by Us. If You click on a third party
-              link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy
-              of every site You visit.
-            </p>
-
-            <p>
-              We have no control over and assume no responsibility for the content, privacy policies or practices of any
-              third party sites or services.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Changes to this Privacy Policy</h2>
-
-            <p>
-              We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new
-              Privacy Policy on this page.
-            </p>
-
-            <p>
-              We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming
-              effective and update the "Last updated" date at the top of this Privacy Policy.
-            </p>
-
-            <p>
-              You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy
-              are effective when they are posted on this page.
-            </p>
-
-            <h2 className="text-xl font-bold mt-8 mb-4">Contact Us</h2>
-
-            <p>If you have any questions about this Privacy Policy, You can contact us:</p>
-            <ul className="list-disc pl-6 my-4">
-              <li>By email: support@cartoonifai.com</li>
-              <li>
-                By visiting this page on our website:{" "}
-                <Link
-                  href="/contact"
-                  className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-                >
-                  https://cartoonifai.com/contact
-                </Link>
-              </li>
-            </ul>
-
-            <div className="mt-8 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-              <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">🔒 Privacy Summary</h3>
-              <ul className="text-sm text-green-700 dark:text-green-300 space-y-1">
-                <li>✅ Images are automatically deleted after AI processing (5-10 seconds)</li>
-                <li>✅ We do not store your photos on our servers</li>
-                <li>✅ We do not share your images with third parties without consent</li>
-                <li>✅ All AI processing is done securely on our servers</li>
-                <li>✅ Industry-standard encryption and security measures</li>
-                <li>✅ Full compliance with data protection regulations</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <footer className="border-t bg-background">
-        <div className="container py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <Image src="/favicon.png" alt="CartoonifAI Logo" width={20} height={20} className="w-5 h-5" />
-                <span className="text-sm font-bold">
-                  <span className="text-purple-800 dark:text-purple-300">Cartoonif</span>
-                  <span className="text-orange-500">AI</span>
-                </span>
-              </Link>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/about"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/terms"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/privacy"
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              >
-                Privacy
-              </Link>
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              <p>© {new Date().getFullYear()} CartoonifAI. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <H2>Contact us</H2>
+      <P>
+        CartoonifAI Inc. —{" "}
+        <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink> ·{" "}
+        <TextLink href="/contact">cartoonifai.com/contact</TextLink>
+      </P>
+    </LegalPage>
   )
 }
