@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TC942GQ696.com.CartoonifAI.app"],
+        "components": [{ "/": "/i/*", "comment": "Invite links open the invite screen" }]
+      }
+    ]
+  }
+}
