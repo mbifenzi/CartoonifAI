@@ -1,9 +1,10 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import { ArrowRight, Check, Heart, PawPrint, Shirt } from "lucide-react"
+import { ArrowRight, Check, Globe, Heart, PawPrint, Shirt } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils"
-import { FAQS } from "@/lib/landing"
+import type { Dictionary } from "@/lib/dictionaries/en"
+import { LANGUAGE_NAMES, LOCALES, landingPath, type Locale } from "@/lib/i18n"
 import AppStoreButton from "./app-store-button"
 import PhoneFrame from "./phone-frame"
 import StyleCompare from "./style-compare"
@@ -26,26 +27,26 @@ function Heading({ children, as: Tag = "h2" }: { children: ReactNode; as?: "h2" 
   )
 }
 
-export function StylesSection() {
+export function StylesSection({ t }: { t: Dictionary["styles"] }) {
   return (
     <section id="styles" className={cn(band, "scroll-mt-16")}>
       <div className={cn(container, sectionPad, "flex flex-col gap-12")}>
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div className="flex max-w-[620px] flex-col gap-3.5">
-            <Eyebrow>Styles</Eyebrow>
-            <Heading>One selfie. Every style.</Heading>
+            <Eyebrow>{t.eyebrow}</Eyebrow>
+            <Heading>{t.heading}</Heading>
           </div>
           <p className="max-w-[380px] text-base leading-relaxed text-mist">
-            Pick a look and drag across the photo to compare. New styles are added regularly.
+            {t.lead}
           </p>
         </div>
-        <StyleCompare />
+        <StyleCompare t={t} />
       </div>
     </section>
   )
 }
 
-export function AnimateSection() {
+export function AnimateSection({ t }: { t: Dictionary["animate"] }) {
   return (
     <section id="animate" className={cn(container, sectionPad, "flex scroll-mt-16 flex-col-reverse items-center gap-12 md:flex-row md:gap-20")}>
       <div className="relative flex w-full min-w-0 flex-1 justify-center">
@@ -57,21 +58,20 @@ export function AnimateSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/landing/screen-animate.webp"
-            alt="A finished 3D Dream portrait with the Animate it button"
+            alt={t.screenAlt}
             loading="lazy"
             className="h-full w-full object-cover"
           />
         </PhoneFrame>
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-6">
-        <Eyebrow className="text-coral">Animate it</Eyebrow>
-        <Heading>Now your cartoon moves.</Heading>
+        <Eyebrow className="text-coral">{t.eyebrow}</Eyebrow>
+        <Heading>{t.heading}</Heading>
         <p className="max-w-[500px] text-lg leading-relaxed text-mist">
-          Turn any creation into a 5-second video. Pick an effect, from a gentle smile to a spooky Halloween zoom, then
-          save it or share it anywhere.
+          {t.lead}
         </p>
         <ul className="flex flex-wrap gap-2.5">
-          {["Gentle smile", "Spooky zoom", "More effects every season"].map((effect) => (
+          {t.effects.map((effect) => (
             <li
               key={effect}
               className="rounded-full border border-coral/35 bg-[#2B1D27] px-4 py-2.5 text-sm font-bold text-cloud"
@@ -82,11 +82,11 @@ export function AnimateSection() {
         </ul>
         <dl className="flex flex-wrap gap-10 pt-2">
           <div className="flex flex-col-reverse gap-1">
-            <dt className="text-[13px] text-mist">video, ready to share</dt>
-            <dd className="font-display text-4xl font-semibold text-cloud">5s</dd>
+            <dt className="text-[13px] text-mist">{t.lengthLabel}</dt>
+            <dd className="font-display text-4xl font-semibold text-cloud">{t.lengthValue}</dd>
           </div>
           <div className="flex flex-col-reverse gap-1">
-            <dt className="text-[13px] text-mist">Sparkles per animation</dt>
+            <dt className="text-[13px] text-mist">{t.costLabel}</dt>
             <dd className="font-display text-4xl font-semibold text-cloud">60</dd>
           </div>
         </dl>
@@ -96,23 +96,23 @@ export function AnimateSection() {
 }
 
 const DUO = [
-  { title: "Costume", text: "Add a costume photo and see yourself wearing it.", icon: Shirt },
-  { title: "Couple", text: "Two photos become one portrait of you together.", icon: Heart },
-  { title: "Me & My Pet", text: "You and your pet, together as co-stars.", icon: PawPrint },
-]
+  { id: "costume", icon: Shirt },
+  { id: "couple", icon: Heart },
+  { id: "pet", icon: PawPrint },
+] as const
 
-export function DuoSection() {
+export function DuoSection({ t }: { t: Dictionary["duo"] }) {
   return (
     <section id="duo" className={cn(band, "scroll-mt-16")}>
       <div className={cn(container, sectionPad, "flex flex-col gap-12")}>
         <div className="flex max-w-[680px] flex-col gap-3.5">
-          <Eyebrow>2-photo styles</Eyebrow>
-          <Heading>Two photos, one portrait.</Heading>
-          <p className="text-lg leading-relaxed text-mist">Each one comes out as a cartoon or for real. Your call.</p>
+          <Eyebrow>{t.eyebrow}</Eyebrow>
+          <Heading>{t.heading}</Heading>
+          <p className="text-lg leading-relaxed text-mist">{t.lead}</p>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
-          {DUO.map(({ title, text, icon: Icon }) => (
-            <article key={title} className="flex flex-col gap-6 rounded-[26px] border border-white/[0.08] bg-ink-surface p-6">
+          {DUO.map(({ id, icon: Icon }) => (
+            <article key={id} className="flex flex-col gap-6 rounded-[26px] border border-white/[0.08] bg-ink-surface p-6">
               <div className="flex items-center gap-3" aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/landing/original.webp" alt="" loading="lazy" className="h-16 w-16 rounded-2xl object-cover" />
@@ -126,11 +126,11 @@ export function DuoSection() {
                 </span>
               </div>
               <div className="flex flex-col gap-2.5">
-                <h3 className="font-display text-[26px] font-semibold text-cloud">{title}</h3>
-                <p className="text-[15px] leading-relaxed text-mist">{text}</p>
+                <h3 className="font-display text-[26px] font-semibold text-cloud">{t[id].title}</h3>
+                <p className="text-[15px] leading-relaxed text-mist">{t[id].text}</p>
               </div>
               <span className="mt-auto self-start rounded-full bg-ink-raised px-3 py-1.5 text-xs font-bold text-mist">
-                Cartoon or Realistic
+                {t.finish}
               </span>
             </article>
           ))}
@@ -140,37 +140,30 @@ export function DuoSection() {
   )
 }
 
-const SEASONS = [
-  { name: "Halloween", when: "Now", current: true },
-  { name: "Christmas", when: "December" },
-  { name: "Valentine's", when: "February" },
-  { name: "And more, all year", when: "Every season" },
-]
-
-export function SeasonsSection() {
+export function SeasonsSection({ t }: { t: Dictionary["seasons"] }) {
   return (
     <section id="seasons" className={cn(container, sectionPad, "scroll-mt-16")}>
       <div className="flex flex-col items-center gap-12 rounded-[36px] border border-gold/25 bg-[#24182B] p-7 md:flex-row md:gap-20 md:p-16">
         <div className="flex min-w-0 flex-1 flex-col gap-5">
           <span className="self-start rounded-full bg-[#FF9A3D] px-3.5 py-1.5 text-[13px] font-extrabold text-ink">
-            Limited time
+            {t.badge}
           </span>
-          <Heading>Halloween is here.</Heading>
+          <Heading>{t.heading}</Heading>
           <p className="max-w-[480px] text-lg leading-relaxed text-mist">
-            Vampire, Witch, Cute Zombie, Day of the Dead and more. Spooky-cute looks that disappear when the season
-            ends.
+            {t.lead}
           </p>
           <ul className="mt-2 border-t border-white/10">
-            {SEASONS.map((s) => (
+            {/* The first entry is the season that is on now. */}
+            {t.calendar.map((s, i) => (
               <li
                 key={s.name}
                 className={cn(
-                  "flex justify-between border-b border-white/10 py-3.5 last:border-b-0",
-                  s.current ? "font-bold text-cloud" : "font-semibold text-mist",
+                  "flex justify-between gap-4 border-b border-white/10 py-3.5 last:border-b-0",
+                  i === 0 ? "font-bold text-cloud" : "font-semibold text-mist",
                 )}
               >
                 <span>{s.name}</span>
-                <span className={s.current ? "text-[#FFB061]" : undefined}>{s.when}</span>
+                <span className={cn("text-right", i === 0 && "text-[#FFB061]")}>{s.when}</span>
               </li>
             ))}
           </ul>
@@ -180,7 +173,7 @@ export function SeasonsSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/landing/screen-halloween.webp"
-              alt="The Halloween collection in the app"
+              alt={t.screenAlt}
               loading="lazy"
               className="h-full w-full object-cover"
             />
@@ -191,20 +184,14 @@ export function SeasonsSection() {
   )
 }
 
-const STEPS = [
-  { title: "Pick a style", text: "Browse the studio by mood: anime, 3D, comic, painterly and seasonal." },
-  { title: "Choose a photo", text: "A clear, well-lit portrait from your library, or take one on the spot." },
-  { title: "Tap Transform me", text: "Your portrait is ready in seconds. Save it, share it, or animate it." },
-]
-
-export function HowItWorks() {
+export function HowItWorks({ t }: { t: Dictionary["howItWorks"] }) {
   return (
     <section className={cn(container, "flex flex-col gap-10 pb-16 md:pb-28")}>
       <h2 className="font-display text-[clamp(32px,4vw,48px)] font-semibold leading-tight tracking-[-0.025em] text-cloud">
-        Three taps. That&apos;s it.
+        {t.heading}
       </h2>
       <ol className="grid gap-5 md:grid-cols-3">
-        {STEPS.map((step, i) => (
+        {t.steps.map((step, i) => (
           <li key={step.title} className="flex flex-col gap-3 rounded-3xl border border-white/[0.09] p-7">
             <span className="font-display text-[56px] font-semibold leading-none text-violet">{i + 1}</span>
             <span className="text-xl font-bold text-cloud">{step.title}</span>
@@ -216,35 +203,22 @@ export function HowItWorks() {
   )
 }
 
-const FREE_PERKS = [
-  "Free Sparkles when you join, so your first looks are on us",
-  "A free gift every day",
-  "20 free Sparkles for you and each friend you invite",
-  "Top up with a Sparkle pack any time",
-]
-const PLUS_PERKS = [
-  "250 Sparkles every 30 days",
-  "Members-only styles",
-  "+25% bonus Sparkles on every pack",
-  "Share without the watermark",
-]
-
-export function PricingSection() {
+export function PricingSection({ t }: { t: Dictionary["pricing"] }) {
   return (
     <section id="plus" className={cn(band, "scroll-mt-16")}>
       <div className={cn(container, sectionPad, "flex flex-col gap-12")}>
         <div className="flex max-w-[680px] flex-col gap-3.5">
-          <Eyebrow>Pricing</Eyebrow>
-          <Heading>Start free. Go Plus when you&apos;re hooked.</Heading>
+          <Eyebrow>{t.eyebrow}</Eyebrow>
+          <Heading>{t.heading}</Heading>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           <div className="flex flex-col gap-6 rounded-[28px] border border-white/[0.08] bg-ink-surface p-8">
             <div className="flex flex-col gap-1.5">
-              <h3 className="font-display text-[28px] font-semibold text-cloud">Sparkles</h3>
-              <p className="text-[15px] text-mist">Pay as you go. Each look and video costs Sparkles.</p>
+              <h3 className="font-display text-[28px] font-semibold text-cloud">{t.sparklesTitle}</h3>
+              <p className="text-[15px] text-mist">{t.sparklesLead}</p>
             </div>
             <ul className="flex flex-col gap-3.5 text-[15px] text-cloud">
-              {FREE_PERKS.map((perk) => (
+              {t.freePerks.map((perk) => (
                 <li key={perk} className="flex gap-3">
                   <Sparkle className="mt-0.5 h-[18px] w-[18px] flex-none text-gold" />
                   {perk}
@@ -253,23 +227,23 @@ export function PricingSection() {
             </ul>
           </div>
           <div className="flex flex-col gap-6 rounded-[28px] border-[1.5px] border-violet bg-[#2A1F3F] p-8 shadow-[0_30px_70px_rgba(158,124,255,0.2)]">
-            <div className="flex items-start justify-between gap-3">
+            <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="flex flex-col gap-1.5">
                 <h3 className="font-display text-[28px] font-semibold text-cloud">CartoonifAI Plus</h3>
-                <p className="text-[15px] text-mist">For people who make a lot of looks.</p>
+                <p className="text-[15px] text-mist">{t.plusLead}</p>
               </div>
               <span className="whitespace-nowrap rounded-full bg-violet px-3 py-1.5 text-xs font-extrabold text-ink">
-                Best value yearly
+                {t.plusBadge}
               </span>
             </div>
             <p className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-mist">
               <span>
-                <span className="font-display text-[44px] font-semibold text-cloud">$39.99</span> / year
+                <span className="whitespace-nowrap font-display text-[44px] font-semibold text-cloud">{t.yearlyPrice}</span> {t.perYear}
               </span>
-              <span>or $4.99 / month</span>
+              <span>{t.monthlyPrice}</span>
             </p>
             <ul className="flex flex-col gap-3.5 text-[15px] text-cloud">
-              {PLUS_PERKS.map((perk) => (
+              {t.plusPerks.map((perk) => (
                 <li key={perk} className="flex gap-3">
                   <Check className="mt-0.5 h-[18px] w-[18px] flex-none text-violet" strokeWidth={2.6} aria-hidden="true" />
                   {perk}
@@ -277,8 +251,7 @@ export function PricingSection() {
               ))}
             </ul>
             <p className="text-xs leading-relaxed text-mist">
-              US prices shown; your local App Store price may differ. Renews automatically; cancel any time in your App
-              Store settings.
+              {t.note}
             </p>
           </div>
         </div>
@@ -287,14 +260,14 @@ export function PricingSection() {
   )
 }
 
-export function FaqSection() {
+export function FaqSection({ t }: { t: Dictionary["faq"] }) {
   return (
     <section id="faq" className="mx-auto flex max-w-[880px] scroll-mt-16 flex-col gap-8 px-4 py-16 sm:px-6 md:py-28 lg:px-10">
       <h2 className="font-display text-[clamp(32px,4vw,48px)] font-semibold leading-tight tracking-[-0.025em] text-cloud">
-        Questions
+        {t.heading}
       </h2>
       <Accordion type="single" collapsible defaultValue="faq-0" className="border-t border-white/10">
-        {FAQS.map((faq, i) => (
+        {t.items.map((faq, i) => (
           <AccordionItem key={faq.question} value={`faq-${i}`} className="border-white/10">
             <AccordionTrigger className="min-h-16 py-5 text-left text-lg font-bold text-cloud hover:no-underline [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-violet">
               {faq.question}
@@ -307,7 +280,7 @@ export function FaqSection() {
   )
 }
 
-export function FinalCta() {
+export function FinalCta({ t, appStore }: { t: Dictionary["finalCta"]; appStore: Dictionary["appStore"] }) {
   return (
     <section className={cn(container, "pb-16 md:pb-28")}>
       <div className="relative flex flex-col items-center gap-6 overflow-hidden rounded-[40px] border border-white/[0.08] bg-ink-surface px-6 py-14 text-center md:py-24">
@@ -318,39 +291,56 @@ export function FinalCta() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/landing/icon.webp"
-          alt="CartoonifAI app icon"
+          alt={t.iconAlt}
           width={112}
           height={112}
           loading="lazy"
           className="relative h-28 w-28 rounded-[26px] shadow-[0_24px_60px_rgba(158,124,255,0.35)]"
         />
         <h2 className="relative font-display text-[clamp(36px,5.4vw,68px)] font-semibold leading-none tracking-[-0.03em] text-cloud">
-          Who will you be today?
+          {t.heading}
         </h2>
         <p className="relative max-w-[460px] text-lg leading-relaxed text-mist">
-          Free to download, with free Sparkles to start.
+          {t.lead}
         </p>
-        <AppStoreButton className="relative" />
+        <AppStoreButton t={appStore} className="relative" />
       </div>
     </section>
   )
 }
 
-export function SiteFooter() {
+export function SiteFooter({ locale, t }: { locale: Locale; t: Dictionary["footer"] }) {
   return (
     <footer className="border-t border-white/[0.07] pb-24 md:pb-0">
-      <div className={cn(container, "flex flex-wrap items-center justify-between gap-5 py-9 text-sm text-mist")}>
-        <div className="flex flex-wrap items-center gap-2.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/landing/icon.webp" alt="" width={28} height={28} loading="lazy" className="h-7 w-7 rounded-lg" />
-          <Wordmark className="text-[17px]" />
-          <span className="ml-2">© {new Date().getFullYear()} Mohamed Bifenzi</span>
+      <div className={cn(container, "flex flex-col gap-6 py-9 text-sm text-mist")}>
+        <div className="flex flex-wrap items-center justify-between gap-5">
+          <div className="flex flex-wrap items-center gap-2.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/landing/icon.webp" alt="" width={28} height={28} loading="lazy" className="h-7 w-7 rounded-lg" />
+            <Wordmark className="text-[17px]" />
+            <span className="ml-2">© {new Date().getFullYear()} Mohamed Bifenzi</span>
+          </div>
+          <nav aria-label={t.label} className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/about" className="hover:text-cloud">{t.about}</Link>
+            <Link href="/contact" className="hover:text-cloud">{t.contact}</Link>
+            <Link href="/privacy" className="hover:text-cloud">{t.privacy}</Link>
+            <Link href="/terms" className="hover:text-cloud">{t.terms}</Link>
+          </nav>
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
-          <Link href="/about" className="hover:text-cloud">About</Link>
-          <Link href="/contact" className="hover:text-cloud">Contact</Link>
-          <Link href="/privacy" className="hover:text-cloud">Privacy</Link>
-          <Link href="/terms" className="hover:text-cloud">Terms</Link>
+        <nav aria-label={t.language} className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/[0.07] pt-6">
+          <Globe className="h-4 w-4 flex-none" aria-hidden="true" />
+          {LOCALES.map((l) => (
+            <Link
+              key={l}
+              href={landingPath(l)}
+              hrefLang={l}
+              lang={l}
+              aria-current={l === locale ? "page" : undefined}
+              className={cn("hover:text-cloud", l === locale && "font-bold text-cloud")}
+            >
+              {LANGUAGE_NAMES[l]}
+            </Link>
+          ))}
         </nav>
       </div>
     </footer>

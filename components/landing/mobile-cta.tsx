@@ -6,7 +6,7 @@ import { APP_STORE_URL } from "@/lib/landing"
 import { AppleLogo } from "./icons"
 
 /** One App Store button pinned to the bottom on phones, once the hero's own button has scrolled away. */
-export default function MobileCta() {
+export default function MobileCta({ label }: { label: string }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function MobileCta() {
         className="flex min-h-12 w-full items-center justify-center gap-2.5 rounded-2xl bg-cloud font-extrabold text-ink"
       >
         <AppleLogo className="h-5 w-5" />
-        Download on the App Store
+        {label}
       </a>
     </div>
   )

@@ -1,19 +1,28 @@
 import { APP_STORE_URL } from "@/lib/landing"
+import type { Dictionary } from "@/lib/dictionaries/en"
 import { cn } from "@/lib/utils"
 import { AppleLogo } from "./icons"
 
-export default function AppStoreButton({ size = "lg", className }: { size?: "sm" | "lg"; className?: string }) {
+export default function AppStoreButton({
+  t,
+  size = "lg",
+  className,
+}: {
+  t: Dictionary["appStore"]
+  size?: "sm" | "lg"
+  className?: string
+}) {
   if (size === "sm") {
     return (
       <a
         href={APP_STORE_URL}
         className={cn(
-          "inline-flex min-h-11 items-center gap-2 rounded-full bg-cloud px-4 text-sm font-bold text-ink transition hover:bg-white",
+          "inline-flex min-h-11 flex-none items-center gap-2 whitespace-nowrap rounded-full bg-cloud px-4 text-sm font-bold text-ink transition hover:bg-white",
           className,
         )}
       >
         <AppleLogo className="h-[18px] w-[18px]" />
-        Get the app
+        {t.getApp}
       </a>
     )
   }
@@ -28,8 +37,8 @@ export default function AppStoreButton({ size = "lg", className }: { size?: "sm"
     >
       <AppleLogo className="h-7 w-7" />
       <span className="flex flex-col text-left leading-[1.1]">
-        <span className="text-xs font-semibold">Download on the</span>
-        <span className="text-[21px] font-extrabold tracking-tight">App Store</span>
+        <span className="text-xs font-semibold">{t.downloadOn}</span>
+        <span className="text-[21px] font-extrabold tracking-tight">{t.appStore}</span>
       </span>
     </a>
   )

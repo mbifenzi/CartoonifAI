@@ -1,11 +1,15 @@
 import Link from "next/link"
 import { ChevronRight, Play } from "lucide-react"
+import type { Dictionary } from "@/lib/dictionaries/en"
+import { landingPath, type Locale } from "@/lib/i18n"
 import AppStoreButton from "./app-store-button"
 import PhoneFrame from "./phone-frame"
 import PreviewVideo from "./preview-video"
 import { Sparkle } from "./icons"
 
-export default function Hero() {
+export default function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
+  const { hero } = t
+
   return (
     <section
       id="top"
@@ -13,36 +17,36 @@ export default function Hero() {
     >
       <div className="flex min-w-0 flex-1 flex-col gap-7">
         <Link
-          href="/#animate"
+          href={landingPath(locale, "animate")}
           className="inline-flex items-center gap-2.5 self-start rounded-full border border-white/10 bg-ink-surface py-1.5 pl-1.5 pr-3.5 text-[13px] font-semibold text-cloud transition hover:border-white/20"
         >
-          <span className="rounded-full bg-coral px-2.5 py-1 text-[11px] font-extrabold tracking-wider text-ink">NEW</span>
-          Animate it, 2-photo styles and Halloween
+          <span className="rounded-full bg-coral px-2.5 py-1 text-[11px] font-extrabold tracking-wider text-ink">{hero.newBadge}</span>
+          {hero.news}
           <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
         </Link>
         <h1 className="font-display text-[clamp(46px,7vw,92px)] font-semibold leading-[0.98] tracking-[-0.03em] text-cloud text-balance">
-          Who do you want to <em className="text-violet">become?</em>
+          {hero.titleStart}
+          <em className="text-violet">{hero.titleHighlight}</em>
         </h1>
         <p className="max-w-[520px] text-lg leading-relaxed text-mist md:text-xl">
-          CartoonifAI redraws your selfie in hand-picked styles like Anime Glow, 3D Dream and Comic Hero. Then it brings
-          your portrait to life as a 5-second video.
+          {hero.lead}
         </p>
         <div className="flex flex-wrap items-center gap-3.5">
-          <AppStoreButton />
+          <AppStoreButton t={t.appStore} />
           <Link
-            href="/#styles"
+            href={landingPath(locale, "styles")}
             className="inline-flex min-h-[60px] items-center rounded-2xl border border-white/15 px-6 text-[15px] font-bold text-cloud transition hover:border-white/30"
           >
-            See the styles
+            {hero.seeStyles}
           </Link>
         </div>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[13px] font-semibold text-mist">
           <li className="inline-flex items-center gap-1.5">
             <Sparkle className="h-[15px] w-[15px] text-gold" />
-            Free Sparkles to start
+            {hero.perks[0]}
           </li>
-          <li>iPhone and iPad</li>
-          <li>6 languages</li>
+          <li>{hero.perks[1]}</li>
+          <li>{hero.perks[2]}</li>
         </ul>
       </div>
 
@@ -55,7 +59,7 @@ export default function Hero() {
           <PreviewVideo
             src="/landing/animate-preview.mp4"
             poster="/landing/screen-home.webp"
-            label="A short tour of the CartoonifAI app"
+            label={hero.videoLabel}
           />
         </PhoneFrame>
 
@@ -72,16 +76,16 @@ export default function Hero() {
             <div className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-px bg-white" />
           </div>
           <div className="flex justify-between px-1 pb-0.5 pt-2 text-[11px] font-bold text-mist">
-            <span>Before</span>
+            <span>{hero.before}</span>
             <span className="text-violet">Anime Glow</span>
           </div>
         </div>
 
-        <div className="absolute right-0 top-[14%] flex items-center gap-2.5 rounded-full bg-coral py-2 pl-2 pr-4 text-sm font-extrabold text-ink shadow-[0_18px_40px_rgba(255,140,125,0.35)] sm:right-[calc(50%-270px)]">
+        <div className="absolute right-0 top-[14%] flex items-center gap-2.5 rounded-full bg-coral py-2 pl-2 pr-4 text-sm font-extrabold text-ink shadow-[0_18px_40px_rgba(255,140,125,0.35)] sm:right-[max(0px,calc(50%-270px))]">
           <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-ink">
             <Play className="h-3 w-3 fill-coral text-coral" aria-hidden="true" />
           </span>
-          Animate it · 5s
+          {hero.animateChip}
         </div>
       </div>
     </section>
