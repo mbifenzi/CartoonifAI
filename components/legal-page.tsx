@@ -1,113 +1,55 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import Image from "next/image"
-
-const footerLink = "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+import PageShell, { PageIntro } from "@/components/landing/page-shell"
 
 /** Shared chrome and typography for the Privacy Policy and Terms of Use. */
 export function LegalPage({ title, updated, children }: { title: string; updated: string; children: ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/favicon.png" alt="CartoonifAI Logo" width={32} height={32} className="w-8 h-8" />
-              <span className="text-xl font-bold">
-                <span className="text-purple-800 dark:text-purple-300">Cartoonif</span>
-                <span className="text-orange-500">AI</span>
-              </span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/#features" className="text-sm font-medium hover:text-primary">
-              Features
-            </Link>
-            <Link href="/#styles" className="text-sm font-medium hover:text-primary">
-              Styles
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-primary">
-              About
-            </Link>
-            <Link href="/contact" className="text-sm font-medium hover:text-primary">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
-
-      <main className="flex-1 container py-12">
-        <article className="max-w-3xl mx-auto leading-7">
-          <h1 className="text-3xl font-bold mb-2">{title}</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">Last updated: {updated}</p>
+    <PageShell>
+      <div className="mx-auto max-w-[1200px] px-4 py-14 sm:px-6 md:py-24 lg:px-10">
+        <article className="mx-auto max-w-[70ch] text-[17px] leading-[1.75] text-mist [&_strong]:font-bold [&_strong]:text-cloud">
+          <PageIntro eyebrow="Legal" title={title} />
+          <p className="mb-10 mt-5 border-b border-white/10 pb-8 text-sm font-semibold text-mist">Last updated: {updated}</p>
           {children}
         </article>
-      </main>
-
-      <footer className="border-t bg-background">
-        <div className="container py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <Image src="/favicon.png" alt="CartoonifAI Logo" width={20} height={20} className="w-5 h-5" />
-                <span className="text-sm font-bold">
-                  <span className="text-purple-800 dark:text-purple-300">Cartoonif</span>
-                  <span className="text-orange-500">AI</span>
-                </span>
-              </Link>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <Link href="/about" className={footerLink}>
-                About
-              </Link>
-              <Link href="/contact" className={footerLink}>
-                Contact
-              </Link>
-              <Link href="/terms" className={footerLink}>
-                Terms
-              </Link>
-              <Link href="/privacy" className={footerLink}>
-                Privacy
-              </Link>
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              <p>© {new Date().getFullYear()} CartoonifAI. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </PageShell>
   )
 }
 
 export function H2({ id, children }: { id?: string; children: ReactNode }) {
   return (
-    <h2 id={id} className="text-xl font-bold mt-10 mb-4 scroll-mt-20">
+    <h2
+      id={id}
+      className="mb-4 mt-14 scroll-mt-24 font-display text-[28px] font-semibold leading-tight tracking-[-0.015em] text-cloud md:text-[32px]"
+    >
       {children}
     </h2>
   )
 }
 
 export function H3({ children }: { children: ReactNode }) {
-  return <h3 className="text-lg font-semibold mt-6 mb-2">{children}</h3>
+  return <h3 className="mb-2 mt-8 text-lg font-bold text-cloud">{children}</h3>
 }
 
 export function P({ children }: { children: ReactNode }) {
-  return <p className="mb-4">{children}</p>
+  return <p className="mb-5">{children}</p>
 }
 
 export function List({ children }: { children: ReactNode }) {
-  return <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
+  return <ul className="mb-5 list-disc space-y-2.5 pl-6 marker:text-violet">{children}</ul>
 }
 
 export function TextLink({ href, children }: { href: string; children: ReactNode }) {
+  const className =
+    "break-words font-semibold text-violet underline decoration-violet/40 underline-offset-[3px] transition hover:text-cloud hover:decoration-cloud/60"
   const external = href.startsWith("http") || href.startsWith("mailto:")
   return external ? (
-    <a href={href} className="text-purple-700 dark:text-purple-300 underline underline-offset-2">
+    <a href={href} className={className}>
       {children}
     </a>
   ) : (
-    <Link href={href} className="text-purple-700 dark:text-purple-300 underline underline-offset-2">
+    <Link href={href} className={className}>
       {children}
     </Link>
   )

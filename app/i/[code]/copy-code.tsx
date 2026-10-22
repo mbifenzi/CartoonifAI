@@ -20,9 +20,9 @@ export default function CopyCode({ code }: { code: string }) {
     <button
       type="button"
       onClick={copy}
-      className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2 text-sm font-semibold text-white hover:bg-white/30"
+      className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-ink-surface px-5 text-sm font-bold text-cloud transition hover:border-white/30"
     >
-      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+      {copied ? <Check className="h-4 w-4 text-violet" /> : <Copy className="h-4 w-4" />}
       {copied ? "Copied" : "Copy code"}
     </button>
   )
