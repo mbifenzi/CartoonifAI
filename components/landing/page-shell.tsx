@@ -1,15 +1,16 @@
 import type { ReactNode } from "react"
+import en from "@/lib/dictionaries/en"
 import { cn } from "@/lib/utils"
 import SiteHeader from "./site-header"
 import { SiteFooter } from "./sections"
 
-/** The landing page's header, footer and dark ground, for the site's other pages. */
+/** The landing page's header, footer and dark ground, for the site's other pages (English only). */
 export default function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip bg-ink font-sans text-cloud antialiased">
-      <SiteHeader />
+      <SiteHeader locale="en" t={en} />
       <main className="flex-1">{children}</main>
-      <SiteFooter />
+      <SiteFooter locale="en" t={en.footer} />
     </div>
   )
 }

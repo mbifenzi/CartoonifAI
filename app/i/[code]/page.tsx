@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import PageShell from "@/components/landing/page-shell"
 import AppStoreButton from "@/components/landing/app-store-button"
+import en from "@/lib/dictionaries/en"
 import { Sparkle } from "@/components/landing/icons"
 import CopyCode from "./copy-code"
 
@@ -59,7 +60,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
           </div>
 
           <div className="flex w-full flex-col items-center gap-4">
-            <AppStoreButton />
+            <AppStoreButton t={en.appStore} />
             {code && (
               <a
                 href={`cartoonifai://invite?code=${code}`}

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import PageShell, { PageIntro } from "@/components/landing/page-shell"
 import AppStoreButton from "@/components/landing/app-store-button"
+import en from "@/lib/dictionaries/en"
 import { Sparkle } from "@/components/landing/icons"
 
 export const metadata: Metadata = {
@@ -95,7 +96,7 @@ export default function AboutPage() {
             </Link>
             .
           </p>
-          <AppStoreButton />
+          <AppStoreButton t={en.appStore} />
         </div>
       </section>
     </PageShell>
