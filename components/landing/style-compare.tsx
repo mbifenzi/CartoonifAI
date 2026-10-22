@@ -3,16 +3,17 @@
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { STYLES } from "@/lib/landing"
+import type { Dictionary } from "@/lib/dictionaries/en"
 import { Sparkle } from "./icons"
 
-export default function StyleCompare() {
+export default function StyleCompare({ t }: { t: Dictionary["styles"] }) {
   const [active, setActive] = useState(0)
   const [position, setPosition] = useState(50)
   const style = STYLES[active]
 
   return (
     <div className="flex flex-col gap-8 lg:flex-row">
-      <div className="flex min-w-0 flex-col gap-2.5 lg:w-[400px] lg:flex-none" role="group" aria-label="Choose a style">
+      <div className="flex min-w-0 flex-col gap-2.5 lg:w-[400px] lg:flex-none" role="group" aria-label={t.chooseLabel}>
         {STYLES.map((s, i) => (
           <button
             key={s.id}
@@ -30,7 +31,7 @@ export default function StyleCompare() {
             <img src={s.image} alt="" loading="lazy" className="h-16 w-16 flex-none rounded-[14px] object-cover" />
             <span className="flex min-w-0 flex-col gap-1">
               <span className="font-display text-xl font-semibold text-cloud">{s.name}</span>
-              <span className="text-sm leading-snug text-mist">{s.description}</span>
+              <span className="text-sm leading-snug text-mist">{t.descriptions[s.id]}</span>
             </span>
           </button>
         ))}
@@ -41,13 +42,13 @@ export default function StyleCompare() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={style.image}
-            alt={`The same photo in the ${style.name} style`}
+            alt={t.styledAlt.replace("{style}", style.name)}
             className="absolute inset-0 h-full w-full object-cover"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/landing/original.webp"
-            alt="The original photo"
+            alt={t.originalAlt}
             className="absolute inset-0 h-full w-full object-cover"
             style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
           />
@@ -63,7 +64,7 @@ export default function StyleCompare() {
             </div>
           </div>
           <span className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-ink-deep/75 px-3 py-1.5 text-[13px] font-bold text-cloud">
-            Original
+            {t.original}
           </span>
           <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-violet px-3 py-1.5 text-[13px] font-extrabold text-ink">
             {style.name}
@@ -74,15 +75,15 @@ export default function StyleCompare() {
             max={100}
             value={position}
             onChange={(e) => setPosition(Number(e.target.value))}
-            aria-label="Drag to compare the original photo and the cartoon"
+            aria-label={t.sliderLabel}
             className="absolute inset-0 m-0 h-full w-full cursor-ew-resize opacity-0"
           />
         </div>
         <div className="flex flex-wrap justify-between gap-2 text-[13px] text-mist">
-          <span>Drag across the photo to compare</span>
+          <span>{t.dragHint}</span>
           <span className="inline-flex items-center gap-1.5">
             <Sparkle className="h-[13px] w-[13px] text-gold" />
-            From 10 Sparkles a look
+            {t.price}
           </span>
         </div>
       </div>
