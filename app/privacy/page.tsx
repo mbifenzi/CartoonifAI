@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated="October 2, 2026">
+    <LegalPage title="Privacy Policy" updated="October 22, 2026">
       <P>
-        This Privacy Policy explains how CartoonifAI Inc. (&quot;CartoonifAI&quot;, &quot;we&quot;, &quot;us&quot;)
+        This Privacy Policy explains how Mohamed Bifenzi (&quot;CartoonifAI&quot;, &quot;we&quot;, &quot;us&quot;)
         handles your information when you use the CartoonifAI mobile app (the &quot;App&quot;) and this website. If you
         have questions, email us at <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink>.
       </P>
@@ -202,7 +202,7 @@ export default function PrivacyPage() {
 
       <H2>Contact us</H2>
       <P>
-        CartoonifAI Inc. —{" "}
+        Mohamed Bifenzi (CartoonifAI) —{" "}
         <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink> ·{" "}
         <TextLink href="/contact">cartoonifai.com/contact</TextLink>
       </P>

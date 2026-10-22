@@ -51,9 +51,9 @@ export default function LandingPage({ locale }: { locale: Locale }) {
       <main className="flex-1">
         <Hero locale={locale} t={t} />
         <StylesSection t={t.styles} />
-        <AnimateSection t={t.animate} />
+        <AnimateSection locale={locale} t={t.animate} />
         <DuoSection t={t.duo} />
-        <SeasonsSection t={t.seasons} />
+        <SeasonsSection locale={locale} t={t.seasons} />
         <HowItWorks t={t.howItWorks} />
         <PricingSection t={t.pricing} />
         <FaqSection t={t.faq} />

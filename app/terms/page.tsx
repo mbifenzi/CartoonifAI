@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Use" updated="October 2, 2026">
+    <LegalPage title="Terms of Use" updated="October 22, 2026">
       <P>
-        These Terms of Use (the &quot;Terms&quot;) are an agreement between you and CartoonifAI Inc.
+        These Terms of Use (the &quot;Terms&quot;) are an agreement between you and Mohamed Bifenzi
         (&quot;CartoonifAI&quot;, &quot;we&quot;, &quot;us&quot;) and govern your use of the CartoonifAI mobile app
         (the &quot;App&quot;). By using the App you agree to these Terms and to our{" "}
         <TextLink href="/privacy">Privacy Policy</TextLink>. If you do not agree, do not use the App.
@@ -187,7 +187,7 @@ export default function TermsPage() {
 
       <H2>15. Contact us</H2>
       <P>
-        CartoonifAI Inc. —{" "}
+        Mohamed Bifenzi (CartoonifAI) —{" "}
         <TextLink href="mailto:support@cartoonifai.com">support@cartoonifai.com</TextLink> ·{" "}
         <TextLink href="/contact">cartoonifai.com/contact</TextLink>
       </P>

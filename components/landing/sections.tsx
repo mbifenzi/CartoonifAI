@@ -46,7 +46,7 @@ export function StylesSection({ t }: { t: Dictionary["styles"] }) {
   )
 }
 
-export function AnimateSection({ t }: { t: Dictionary["animate"] }) {
+export function AnimateSection({ locale, t }: { locale: Locale; t: Dictionary["animate"] }) {
   return (
     <section id="animate" className={cn(container, sectionPad, "flex scroll-mt-16 flex-col-reverse items-center gap-12 md:flex-row md:gap-20")}>
       <div className="relative flex w-full min-w-0 flex-1 justify-center">
@@ -57,7 +57,7 @@ export function AnimateSection({ t }: { t: Dictionary["animate"] }) {
         <PhoneFrame className="w-[min(290px,68vw)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/landing/screen-animate.webp"
+            src={`/landing/${locale}/screen-animate.webp`}
             alt={t.screenAlt}
             loading="lazy"
             className="h-full w-full object-cover"
@@ -96,9 +96,10 @@ export function AnimateSection({ t }: { t: Dictionary["animate"] }) {
 }
 
 const DUO = [
-  { id: "costume", icon: Shirt },
-  { id: "couple", icon: Heart },
-  { id: "pet", icon: PawPrint },
+  // Costume shows a real result from the app's Halloween collection; the others don't have one yet.
+  { id: "costume", icon: Shirt, result: "/landing/costume.webp" },
+  { id: "couple", icon: Heart, result: null },
+  { id: "pet", icon: PawPrint, result: null },
 ] as const
 
 export function DuoSection({ t }: { t: Dictionary["duo"] }) {
@@ -111,7 +112,7 @@ export function DuoSection({ t }: { t: Dictionary["duo"] }) {
           <p className="text-lg leading-relaxed text-mist">{t.lead}</p>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
-          {DUO.map(({ id, icon: Icon }) => (
+          {DUO.map(({ id, icon: Icon, result }) => (
             <article key={id} className="flex flex-col gap-6 rounded-[26px] border border-white/[0.08] bg-ink-surface p-6">
               <div className="flex items-center gap-3" aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -121,9 +122,14 @@ export function DuoSection({ t }: { t: Dictionary["duo"] }) {
                   <Icon className="h-7 w-7 text-violet" />
                 </span>
                 <ArrowRight className="h-5 w-5 text-mist" />
-                <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet">
-                  <Sparkle className="h-7 w-7 text-ink" />
-                </span>
+                {result ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={result} alt="" loading="lazy" className="h-16 w-16 rounded-2xl object-cover object-top ring-2 ring-violet" />
+                ) : (
+                  <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet">
+                    <Sparkle className="h-7 w-7 text-ink" />
+                  </span>
+                )}
               </div>
               <div className="flex flex-col gap-2.5">
                 <h3 className="font-display text-[26px] font-semibold text-cloud">{t[id].title}</h3>
@@ -140,7 +146,7 @@ export function DuoSection({ t }: { t: Dictionary["duo"] }) {
   )
 }
 
-export function SeasonsSection({ t }: { t: Dictionary["seasons"] }) {
+export function SeasonsSection({ locale, t }: { locale: Locale; t: Dictionary["seasons"] }) {
   return (
     <section id="seasons" className={cn(container, sectionPad, "scroll-mt-16")}>
       <div className="flex flex-col items-center gap-12 rounded-[36px] border border-gold/25 bg-[#24182B] p-7 md:flex-row md:gap-20 md:p-16">
@@ -168,11 +174,22 @@ export function SeasonsSection({ t }: { t: Dictionary["seasons"] }) {
             ))}
           </ul>
         </div>
-        <div className="flex w-full min-w-0 flex-1 justify-center">
+        <div className="relative flex w-full min-w-0 flex-1 justify-center">
+          {/* A real Halloween result from the app preview: photo, then the Vampire look. */}
+          <div
+            aria-hidden="true"
+            className="absolute bottom-[8%] left-0 z-10 flex items-center gap-2 rounded-[22px] border border-white/10 bg-ink-surface p-2 shadow-[0_24px_48px_rgba(0,0,0,0.5)] sm:left-[calc(50%-260px)]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/landing/vampire-before.webp" alt="" loading="lazy" className="h-[72px] w-[72px] rounded-2xl object-cover sm:h-24 sm:w-24" />
+            <ArrowRight className="h-4 w-4 text-[#FFB061]" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/landing/vampire-after.webp" alt="" loading="lazy" className="h-[72px] w-[72px] rounded-2xl object-cover ring-2 ring-[#FF9A3D] sm:h-24 sm:w-24" />
+          </div>
           <PhoneFrame className="w-[min(280px,68vw)] rotate-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/landing/screen-halloween.webp"
+              src={`/landing/${locale}/screen-halloween.webp`}
               alt={t.screenAlt}
               loading="lazy"
               className="h-full w-full object-cover"

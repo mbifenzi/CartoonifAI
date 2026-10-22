@@ -58,7 +58,7 @@ export default function Hero({ locale, t }: { locale: Locale; t: Dictionary }) {
         <PhoneFrame className="w-[min(300px,68vw)]">
           <PreviewVideo
             src="/landing/animate-preview.mp4"
-            poster="/landing/screen-home.webp"
+            poster={`/landing/${locale}/screen-home.webp`}
             label={hero.videoLabel}
           />
         </PhoneFrame>
