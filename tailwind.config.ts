@@ -18,7 +18,24 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
       colors: {
+        // CartoonifAI app palette (client/lib/theme.tsx, dark theme)
+        ink: {
+          DEFAULT: "#1D1426",
+          deep: "#160F1D",
+          surface: "#261A31",
+          raised: "#30213E",
+          line: "#473552",
+        },
+        cloud: "#F7F1F8",
+        mist: "#C5B8CC",
+        violet: "#9E7CFF",
+        coral: "#FF8C7D",
+        gold: "#E2B458",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

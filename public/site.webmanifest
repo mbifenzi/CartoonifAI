@@ -1,7 +1,7 @@
 {
   "name": "CartoonifAI",
   "short_name": "CartoonifAI",
-  "description": "Transform your photos into cartoon art with AI",
+  "description": "Turn your selfie into anime, 3D and comic art",
   "icons": [
     {
       "src": "/favicon.png",
@@ -14,8 +14,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#7c3aed",
-  "background_color": "#ffffff",
+  "theme_color": "#1D1426",
+  "background_color": "#1D1426",
   "display": "standalone",
   "start_url": "/",
   "scope": "/"
